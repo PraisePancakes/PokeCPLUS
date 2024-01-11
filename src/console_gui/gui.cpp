@@ -21,3 +21,12 @@ void welcome_user(std::string username)
 {
     std::cout << ":: WELCOME " << username << "::\n";
 };
+
+unsigned short int get_starter_pokemon()
+{
+    unsigned short int option = 0;
+    std::cout << "-=-=- Select your starting pokemon -=-=-\n1 : Pikachu\n2 : Squirtle\n3 : Charmander\n4 : Bulbasaur\n";
+    std::cin >> option;
+
+    return option;
+}

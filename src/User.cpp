@@ -15,3 +15,8 @@ void User::display_pokedex() const
                   << "\n";
     };
 }
+
+void User::push_to_pokedex(Pokemon *new_pokemon)
+{
+    m_pokedex.push_back(*new_pokemon);
+};

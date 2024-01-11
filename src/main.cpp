@@ -25,6 +25,31 @@ int main(int argc, char *argv[])
 
     welcome_user(user.get_username()); // first || > saves
 
+    unsigned short int starter_option = get_starter_pokemon();
+    Pokemon *new_pokemon = nullptr;
+    switch (starter_option)
+    {
+    case 1:
+        new_pokemon = new Pokemon("Pikachu", "Lightning", std::experimental::nullopt);
+        break;
+    case 2:
+        new_pokemon = new Pokemon("Squirtle", "Water", std::experimental::nullopt);
+
+        break;
+    case 3:
+        new_pokemon = new Pokemon("Charmander", "Fire", std::experimental::nullopt);
+        break;
+    case 4:
+        new_pokemon = new Pokemon("Bulbasaur", "Grass", "Poison");
+        break;
+    default:
+        std::cout << "[ERROR] INVALID STARTER OPTION\n";
+    }
+
+    user.push_to_pokedex(new_pokemon);
+
+    user.display_pokedex();
+
     // game flow
     unsigned short int menu_option = 0;
     const unsigned short int MENU_EXIT = 3;

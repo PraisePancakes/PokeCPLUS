@@ -12,13 +12,12 @@ private:
     bool m_is_shiny;
 
 public:
-    Pokemon(std::string name, std::string primary_type, std::string secondary_type);
+    Pokemon(std::string name, std::string primary_type, std::experimental::optional<std::string> secondary_type);
 
     std::string get_name() const;
     std::string get_primary_type() const;
     std::experimental::optional<std::string> get_secondary_type() const;
     void set_shiny();
-   
 };
 
 #endif
