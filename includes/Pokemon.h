@@ -14,8 +14,11 @@ private:
 public:
     Pokemon(std::string name, std::string primary_type, std::string secondary_type);
 
-    bool set_is_shiny();
-    ~Pokemon();
+    std::string get_name() const;
+    std::string get_primary_type() const;
+    std::experimental::optional<std::string> get_secondary_type() const;
+    void set_shiny();
+   
 };
 
 #endif

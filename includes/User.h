@@ -15,7 +15,7 @@ private:
 public:
     User(std::string username); // arg list : username, pokedex, pokeballs
 
-    void add_pokemon(Pokemon &new_pokemon);
+    void push_to_pokedex(Pokemon &new_pokemon);
     void display_pokedex() const;
     std::string get_username() const;
     // ~User(); future deconstructor
