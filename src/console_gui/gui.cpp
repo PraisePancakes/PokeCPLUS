@@ -3,7 +3,7 @@
 
 void display_tutorial() // update in the future
 {
-    std::cout << ":: WELCOME TO POKEMON CPLUS ::\n1: CATCH POKEMON \n2: VIEW YOUR POKDEX\n";
+    std::cout << ":: WELCOME TO POKEMON CPLUS ::\n|\tCATCH POKEMON\t|\n|\tVIEW POKDEX\t|\n";
 }
 
 unsigned short int get_menu()
@@ -11,7 +11,7 @@ unsigned short int get_menu()
     unsigned short int option = 0;
 
     std::cout << "=-=-= POKEMON CPLUS =-=-=\n"
-              << "1 : Catch\n2: Pokedex\n3 : Quit\n";
+              << "1 : Catch\n2 : Pokedex\n3 : Quit\n";
     std::cin >> option;
 
     return option;
