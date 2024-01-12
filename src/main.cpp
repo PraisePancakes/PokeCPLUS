@@ -47,7 +47,6 @@ int main(int argc, char *argv[])
     }
 
     user.push_to_pokedex(new_pokemon);
-
     user.display_pokedex();
 
     // game flow
