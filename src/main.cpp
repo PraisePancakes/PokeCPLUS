@@ -2,6 +2,7 @@
 #include "../includes/User.h"
 #include "../includes/console_gui/gui.h"
 #include "../utils/validators/validateUsername.cpp"
+#include "../includes/Ball.h"
 
 int main(int argc, char *argv[])
 {
@@ -47,7 +48,12 @@ int main(int argc, char *argv[])
     }
 
     user.push_to_pokedex(new_pokemon);
+    delete new_pokemon;
+
     user.display_pokedex();
+    user.display_ball_inventory();
+
+    // create initial ball items, push items to ball_inventory delete the ball items created
 
     // game flow
     unsigned short int menu_option = 0;
@@ -62,6 +68,7 @@ int main(int argc, char *argv[])
         case MENU_CATCH:
             break;
         case MENU_VIEW_POKEDEX:
+            user.display_pokedex();
             break;
         case MENU_EXIT:
             std::cout << "PROCESS TERMINATED\n";

@@ -1,4 +1,4 @@
-#include "../../includes/console_gui/gui.h"
+#include "../../includes/console_gui/Gui.h"
 #include <iostream>
 
 void display_tutorial() // update in the future
