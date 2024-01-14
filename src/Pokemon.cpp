@@ -1,8 +1,8 @@
 #include "../includes/Pokemon.h"
 #include <time.h>
 
-Pokemon::Pokemon(std::string name, std::string primary_type, std::experimental::optional<std::string> secondary_type)
-    : m_pokemon_name(name), m_pokemon_primary_type(primary_type), m_pokemon_secondary_type(secondary_type)
+Pokemon::Pokemon(std::string name, std::string primary_type, std::experimental::optional<std::string> secondary_type, bool is_legendary)
+    : m_pokemon_name(name), m_pokemon_primary_type(primary_type), m_pokemon_secondary_type(secondary_type), m_is_legendary(is_legendary)
 {
     m_set_shiny();
 };

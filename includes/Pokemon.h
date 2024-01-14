@@ -10,10 +10,11 @@ private:
     std::string m_pokemon_primary_type;
     std::experimental::optional<std::string> m_pokemon_secondary_type; // value or NULL
     bool m_is_shiny;
+    bool m_is_legendary;
     void m_set_shiny();
 
 public:
-    Pokemon(std::string name, std::string primary_type, std::experimental::optional<std::string> secondary_type);
+    Pokemon(std::string name, std::string primary_type, std::experimental::optional<std::string> secondary_type, bool is_legendary);
 
     std::string get_name() const;
     std::string get_primary_type() const;

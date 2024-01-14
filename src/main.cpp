@@ -3,6 +3,7 @@
 #include "../includes/console_gui/gui.h"
 #include "../utils/validators/validateUsername.cpp"
 #include "../includes/Ball.h"
+#include "../includes/data/Data.h"
 
 int main(int argc, char *argv[])
 {
@@ -31,17 +32,16 @@ int main(int argc, char *argv[])
     switch (starter_option)
     {
     case 1:
-        new_pokemon = new Pokemon("Pikachu", "Lightning", std::experimental::nullopt);
+        new_pokemon = new Pokemon("Pikachu", "Lightning", std::experimental::nullopt, false);
         break;
     case 2:
-        new_pokemon = new Pokemon("Squirtle", "Water", std::experimental::nullopt);
-
+        new_pokemon = new Pokemon("Squirtle", "Water", std::experimental::nullopt, false);
         break;
     case 3:
-        new_pokemon = new Pokemon("Charmander", "Fire", std::experimental::nullopt);
+        new_pokemon = new Pokemon("Charmander", "Fire", std::experimental::nullopt, false);
         break;
     case 4:
-        new_pokemon = new Pokemon("Bulbasaur", "Grass", "Poison");
+        new_pokemon = new Pokemon("Bulbasaur", "Grass", "Poison", false);
         break;
     default:
         std::cout << "[ERROR] INVALID STARTER OPTION\n";
@@ -50,12 +50,13 @@ int main(int argc, char *argv[])
     user.push_to_pokedex(new_pokemon);
     delete new_pokemon;
 
-    user.display_pokedex();
     user.display_ball_inventory();
 
     // game flow
     unsigned short int menu_option = 0;
     const unsigned short int MENU_EXIT = 3;
+
+    Data data;
 
     while (menu_option != MENU_EXIT)
     {
@@ -64,10 +65,20 @@ int main(int argc, char *argv[])
         switch (menu_option)
         {
         case MENU_CATCH:
-            // handle catching
-            // CATCH FLOW , 5s Walk -> pokemon appears -> catch | run
+        {
             user.walk();
-            break;
+            /*
+                @test random pokemon success, push to pokedex success
+            */
+            Pokemon *random_pokemon = data.get_random_pokemon();
+            user.push_to_pokedex(random_pokemon);
+        }
+        // handle catching
+        // CATCH FLOW , 2s Walk -> pokemon appears -> catch | run
+
+        // get random pokemon from poke data
+
+        break;
         case MENU_VIEW_POKEDEX:
             user.display_pokedex();
             break;
