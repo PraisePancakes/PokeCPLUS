@@ -22,6 +22,7 @@ public:
     void push_to_ball_inventory(Ball *new_ball);
     void display_pokedex() const;
     void display_ball_inventory() const;
+    void walk() const;
     std::string get_username() const;
     // ~User(); future deconstructor
 };

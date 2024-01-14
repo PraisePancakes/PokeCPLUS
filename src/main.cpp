@@ -53,8 +53,6 @@ int main(int argc, char *argv[])
     user.display_pokedex();
     user.display_ball_inventory();
 
-    // create initial ball items, push items to ball_inventory delete the ball items created
-
     // game flow
     unsigned short int menu_option = 0;
     const unsigned short int MENU_EXIT = 3;
@@ -66,6 +64,9 @@ int main(int argc, char *argv[])
         switch (menu_option)
         {
         case MENU_CATCH:
+            // handle catching
+            // CATCH FLOW , 5s Walk -> pokemon appears -> catch | run
+            user.walk();
             break;
         case MENU_VIEW_POKEDEX:
             user.display_pokedex();
