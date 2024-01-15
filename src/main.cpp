@@ -28,27 +28,27 @@ int main(int argc, char *argv[])
     welcome_user(user.get_username()); // first || > saves
 
     unsigned short int starter_option = get_starter_pokemon();
-    Pokemon *new_pokemon = nullptr;
+    Pokemon *starter_pokemon = nullptr;
     switch (starter_option)
     {
     case 1:
-        new_pokemon = new Pokemon("Pikachu", "Lightning", std::experimental::nullopt, false);
+        starter_pokemon = new Pokemon("Pikachu", "Lightning", std::experimental::nullopt, false);
         break;
     case 2:
-        new_pokemon = new Pokemon("Squirtle", "Water", std::experimental::nullopt, false);
+        starter_pokemon = new Pokemon("Squirtle", "Water", std::experimental::nullopt, false);
         break;
     case 3:
-        new_pokemon = new Pokemon("Charmander", "Fire", std::experimental::nullopt, false);
+        starter_pokemon = new Pokemon("Charmander", "Fire", std::experimental::nullopt, false);
         break;
     case 4:
-        new_pokemon = new Pokemon("Bulbasaur", "Grass", "Poison", false);
+        starter_pokemon = new Pokemon("Bulbasaur", "Grass", "Poison", false);
         break;
     default:
         std::cout << "[ERROR] INVALID STARTER OPTION\n";
     }
-
-    user.push_to_pokedex(new_pokemon);
-    delete new_pokemon;
+    starter_pokemon->set_shiny();
+    user.push_to_pokedex(starter_pokemon);
+    delete starter_pokemon;
 
     user.display_ball_inventory();
 
@@ -65,21 +65,31 @@ int main(int argc, char *argv[])
         switch (menu_option)
         {
         case MENU_CATCH:
-        {
-            user.walk();
-            /*
-                @test random pokemon success, push to pokedex success
-            */
-            Pokemon *random_pokemon = data.get_random_pokemon();
-            user.push_to_pokedex(random_pokemon);
-        }
-        // handle catching
-        // CATCH FLOW , 2s Walk -> pokemon appears -> catch | run
+            // handle catching
+            // get random pokemon from poke data
+            // CATCH FLOW , 2s Walk -> pokemon appears -> catch | run
+            {
+                user.walk();
+                /*
+                    @test
+                    -random pokemon success
+                    -push to pokedex success
+                */
+                Pokemon *random_pokemon = data.get_random_pokemon(); // << you encountered
+                random_pokemon->set_shiny();
 
-        // get random pokemon from poke data
+                // if(catch)
+                // -- catch --
+                // handle set shiny here?
+                random_pokemon->display_pokemon();
+                user.push_to_pokedex(random_pokemon);
+                // else
+                // run
+            }
 
-        break;
+            break;
         case MENU_VIEW_POKEDEX:
+            std::cout << "=-=-= YOUR POKEDEX =-=-=\n";
             user.display_pokedex();
             break;
         case MENU_EXIT:

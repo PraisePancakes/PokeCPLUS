@@ -15,7 +15,8 @@ void User::display_pokedex() const
 {
     for (size_t i = 0; i < m_pokedex.size(); ++i)
     {
-        std::cout << "POKEMON [" << i << "] " << m_pokedex[i].get_name() << " " << m_pokedex[i].get_primary_type() << "\n";
+        std::cout << "{" << i + 1 << "} ";
+        m_pokedex[i].display_pokemon();
     };
 }
 
@@ -52,7 +53,7 @@ void User::display_ball_inventory() const
 {
     for (int i = 0; i < m_ball_inventory.size(); i++)
     {
-        std::cout << " " << m_ball_inventory[i].get_ball_type() << " " << m_ball_inventory[i].get_ball_mult();
+        std::cout << " " << m_ball_inventory[i].get_ball_type() << " " << m_ball_inventory[i].get_ball_mult() << "\n";
     }
 }
 

@@ -2,10 +2,7 @@
 #include <time.h>
 
 Pokemon::Pokemon(std::string name, std::string primary_type, std::experimental::optional<std::string> secondary_type, bool is_legendary)
-    : m_pokemon_name(name), m_pokemon_primary_type(primary_type), m_pokemon_secondary_type(secondary_type), m_is_legendary(is_legendary)
-{
-    m_set_shiny();
-};
+    : m_pokemon_name(name), m_pokemon_primary_type(primary_type), m_pokemon_secondary_type(secondary_type), m_is_legendary(is_legendary){};
 
 std::string Pokemon::get_name() const
 {
@@ -22,7 +19,7 @@ std::experimental::optional<std::string> Pokemon::get_secondary_type() const
     return m_pokemon_secondary_type;
 }
 
-void Pokemon::m_set_shiny()
+void Pokemon::set_shiny()
 {
     srand(time(NULL));
 
@@ -39,3 +36,20 @@ bool Pokemon::get_is_shiny() const
 
     return m_is_shiny;
 }
+
+void Pokemon::display_pokemon() const
+{
+    auto secondary_type = get_secondary_type();
+
+    if (get_is_shiny())
+    {
+        std::cout << "** SHINY **";
+    }
+    std::cout << " [ Pokemon :: " << get_name() << " || Type :: " << get_primary_type();
+    if (secondary_type)
+    {
+        std::cout << " / " << secondary_type.value();
+    }
+
+    std::cout << "]\n";
+};
