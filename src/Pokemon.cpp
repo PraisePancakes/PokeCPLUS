@@ -37,19 +37,32 @@ bool Pokemon::get_is_shiny() const
     return m_is_shiny;
 }
 
+bool Pokemon::get_is_legendary() const
+{
+    return m_is_legendary;
+}
+
 void Pokemon::display_pokemon() const
 {
     auto secondary_type = get_secondary_type();
 
-    if (get_is_shiny())
+    if (get_is_shiny() && get_is_legendary())
+    {
+        std::cout << "** SHINY LEGENDARY **";
+    }
+    else if (get_is_shiny() && !get_is_legendary())
     {
         std::cout << "** SHINY **";
     }
-    std::cout << " [ Pokemon :: " << get_name() << " || Type :: " << get_primary_type();
+    else if (get_is_legendary() && !get_is_shiny())
+    {
+        std::cout << "** LEGENDARY **";
+    }
+    std::cout << " [ " << get_name() << " | Type :: " << get_primary_type();
     if (secondary_type)
     {
         std::cout << " / " << secondary_type.value();
     }
 
-    std::cout << "]\n";
+    std::cout << " ]";
 };

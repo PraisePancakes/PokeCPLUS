@@ -3,7 +3,9 @@
 
 void display_tutorial() // update in the future
 {
-    std::cout << ":: WELCOME TO POKEMON CPLUS ::\n|\tCATCH POKEMON\t|\n|\tVIEW POKDEX\t|\n";
+    std::cout << "::\tWELCOME TO POKEMON CPLUS::\n\n|\tCATCH POKEMON\t\t |\n|\tVIEW POKDEX\t\t |\n|\tSHOWCASE POKEMON\t |\n|\tIMPROVE YOUR STATS\t |\n";
+    std::cout << "------------------------------\n";
+    std::cout << "press any key to continue...\n";
 }
 
 unsigned short int get_menu()
@@ -21,12 +23,3 @@ void welcome_user(std::string username)
 {
     std::cout << ":: WELCOME " << username << "::\n";
 };
-
-unsigned short int get_starter_pokemon()
-{
-    unsigned short int option = 0;
-    std::cout << "-=-=- Select your starting pokemon -=-=-\n1 : Pikachu\n2 : Squirtle\n3 : Charmander\n4 : Bulbasaur\n";
-    std::cin >> option;
-
-    return option;
-}

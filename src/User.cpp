@@ -4,6 +4,8 @@
 User::User(std::string username) : m_username(username)
 {
     m_init_ball_inventory();
+    m_showcase = nullptr;
+    m_balls_thrown = 0;
 };
 
 std::string User::get_username() const
@@ -17,6 +19,7 @@ void User::display_pokedex() const
     {
         std::cout << "{" << i + 1 << "} ";
         m_pokedex[i].display_pokemon();
+        std::cout << "\n";
     };
 }
 
@@ -27,6 +30,7 @@ void User::push_to_pokedex(Pokemon *new_pokemon)
 
 void User::push_to_ball_inventory(Ball *new_ball)
 {
+    m_balls_thrown++;
     m_ball_inventory.push_back(*new_ball);
     delete new_ball;
 };
@@ -53,7 +57,7 @@ void User::display_ball_inventory() const
 {
     for (int i = 0; i < m_ball_inventory.size(); i++)
     {
-        std::cout << " " << m_ball_inventory[i].get_ball_type() << " " << m_ball_inventory[i].get_ball_mult() << "\n";
+        std::cout << " " << m_ball_inventory[i].get_ball_type() << "\n";
     }
 }
 
@@ -69,4 +73,61 @@ void User::walk() const
         sleep(WALK_DURATION);
         curr_walk++;
     }
+}
+
+Pokemon *User::get_starter_pokemon(unsigned short int selection_choice) const
+{
+    Pokemon *starter_pokemon = nullptr;
+
+    switch (selection_choice)
+    {
+    case 1:
+        starter_pokemon = new Pokemon("Pikachu", "Lightning", std::experimental::nullopt, false);
+        break;
+    case 2:
+        starter_pokemon = new Pokemon("Squirtle", "Water", std::experimental::nullopt, false);
+        break;
+    case 3:
+        starter_pokemon = new Pokemon("Charmander", "Fire", std::experimental::nullopt, false);
+        break;
+    case 4:
+        starter_pokemon = new Pokemon("Bulbasaur", "Grass", "Poison", false);
+        break;
+    default:
+        std::cout << "[ERROR] INVALID STARTER OPTION\n";
+    }
+
+    return starter_pokemon;
+}
+
+void User::set_showcase_pokemon(Pokemon *pokemon)
+{
+    m_showcase = pokemon;
+};
+
+void User::display_showcase_pokemon() const
+{
+    if (m_showcase)
+    {
+        m_showcase->display_pokemon();
+    }
+    else
+    {
+        std::cout << "[ TBA ] \n";
+    }
+};
+
+unsigned long int User::get_balls_thrown() const
+{
+    return m_balls_thrown;
+}
+
+void User::display_user_stats() const
+{
+    std::string username = get_username();
+    unsigned long int balls_thrown = get_balls_thrown();
+
+    std::cout << "YOUR STATS { \nUsername : " << username << " \nTotal pokeball throws : " << balls_thrown << " \nShowcase :: ";
+    display_showcase_pokemon();
+    std::cout << "}\n";
 }

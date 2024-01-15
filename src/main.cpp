@@ -4,13 +4,14 @@
 #include "../utils/validators/validateUsername.cpp"
 #include "../includes/Ball.h"
 #include "../includes/data/Data.h"
+#include <conio.h>
 
 int main(int argc, char *argv[])
 {
 
     // welcome
     display_tutorial();
-
+    getch();
     // get user
     // first save only
     std::cout << "Enter your username : \n";
@@ -24,33 +25,46 @@ int main(int argc, char *argv[])
     }
 
     User user(username); // first save only
-
+    system("cls");
     welcome_user(user.get_username()); // first || > saves
 
-    unsigned short int starter_option = get_starter_pokemon();
-    Pokemon *starter_pokemon = nullptr;
-    switch (starter_option)
+    unsigned short int starter_option = 0; // @SPAGHETTI clean this mess up, maybe abstract the entire process into the get_starter_pokemon method? who knows its just ugly
+    do
     {
-    case 1:
-        starter_pokemon = new Pokemon("Pikachu", "Lightning", std::experimental::nullopt, false);
-        break;
-    case 2:
-        starter_pokemon = new Pokemon("Squirtle", "Water", std::experimental::nullopt, false);
-        break;
-    case 3:
-        starter_pokemon = new Pokemon("Charmander", "Fire", std::experimental::nullopt, false);
-        break;
-    case 4:
-        starter_pokemon = new Pokemon("Bulbasaur", "Grass", "Poison", false);
-        break;
-    default:
-        std::cout << "[ERROR] INVALID STARTER OPTION\n";
-    }
-    starter_pokemon->set_shiny();
-    user.push_to_pokedex(starter_pokemon);
-    delete starter_pokemon;
+        std::cout << "-=-=- Select your starting pokemon -=-=-\n1 : Pikachu\n2 : Squirtle\n3 : Charmander\n4 : Bulbasaur\n";
+        std::cin >> starter_option;
 
+        if (starter_option < 1 || starter_option > 4)
+        {
+            std::cout << "Invalid selection. Please choose a number between 1 and 4.\n";
+        }
+        else
+        {
+            Pokemon *starter_pokemon = user.get_starter_pokemon(starter_option);
+
+            if (starter_pokemon)
+            {
+                starter_pokemon->set_shiny();
+                std::cout << ":: YOU CHOSE " << starter_pokemon->get_name() << " ::\n";
+                user.push_to_pokedex(starter_pokemon);
+                delete starter_pokemon;
+            }
+            else
+            {
+                std::cout << "Invalid selection. Please choose a number between 1 and 4.\n";
+            }
+        }
+    } while (starter_option < 1 || starter_option > 4);
+
+    std::cout << "press any key to continue...";
+    getch();
+    system("cls");
+    std::cout
+        << ":: HERE ARE YOUR STARTING BALLS ::\n";
     user.display_ball_inventory();
+    std::cout << "press any key to continue...";
+    getch();
+    system("cls");
 
     // game flow
     unsigned short int menu_option = 0;
@@ -60,37 +74,39 @@ int main(int argc, char *argv[])
 
     while (menu_option != MENU_EXIT)
     {
-        menu_option = get_menu();
         system("cls");
+        user.display_user_stats();
+        menu_option = get_menu();
+
         switch (menu_option)
         {
         case MENU_CATCH:
-            // handle catching
-            // get random pokemon from poke data
             // CATCH FLOW , 2s Walk -> pokemon appears -> catch | run
             {
+                system("cls");
                 user.walk();
-                /*
-                    @test
-                    -random pokemon success
-                    -push to pokedex success
-                */
-                Pokemon *random_pokemon = data.get_random_pokemon(); // << you encountered
+                Pokemon *random_pokemon = data.get_random_pokemon();
                 random_pokemon->set_shiny();
+
+                std::cout << "-=-=- YOU ENCOUNTERED ";
+                random_pokemon->display_pokemon();
+                std::cout << " -=-=-\n";
 
                 // if(catch)
                 // -- catch --
-                // handle set shiny here?
-                random_pokemon->display_pokemon();
                 user.push_to_pokedex(random_pokemon);
+
                 // else
                 // run
             }
 
             break;
         case MENU_VIEW_POKEDEX:
+            system("cls");
             std::cout << "=-=-= YOUR POKEDEX =-=-=\n";
             user.display_pokedex();
+            std::cout << "press any key to go back...\n";
+            getch();
             break;
         case MENU_EXIT:
             std::cout << "PROCESS TERMINATED\n";

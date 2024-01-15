@@ -11,6 +11,5 @@ enum MenuOptions
 unsigned short int get_menu();
 void display_tutorial();
 void welcome_user(std::string username);
-unsigned short int get_starter_pokemon();
 
 #endif
