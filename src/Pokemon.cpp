@@ -7,83 +7,83 @@ Pokemon::Pokemon(std::string name, std::string primary_type, std::experimental::
     m_set_pokemon_type(primary_type, secondary_type);
 };
 
-Colors Pokemon::m_get_primary_type_color(std::string primary_type) const
+GUI::Colors Pokemon::m_get_primary_type_color(std::string primary_type) const
 {
     if (primary_type.compare("Fire") == 0)
     {
-        return RED;
+        return GUI::RED;
     }
     else if (primary_type.compare("Water") == 0)
     {
-        return LIGHTBLUE;
+        return GUI::LIGHTBLUE;
     }
     else if (primary_type.compare("Grass") == 0)
     {
-        return GREEN;
+        return GUI::GREEN;
     }
     else if (primary_type.compare("Flying") == 0)
     {
-        return YELLOW;
+        return GUI::YELLOW;
     }
     if (primary_type.compare("Poison") == 0)
     {
-        return MAGENTA;
+        return GUI::MAGENTA;
     }
     else if (primary_type.compare("Psychic") == 0)
     {
-        return LIGHTMAGENTA;
+        return GUI::LIGHTMAGENTA;
     }
     else if (primary_type.compare("Electric") == 0)
     {
-        return YELLOW;
+        return GUI::YELLOW;
     }
     else if (primary_type.compare("ICE") == 0)
     {
-        return CYAN;
+        return GUI::CYAN;
     }
     else
     {
-        return LIGHTGRAY;
+        return GUI::LIGHTGRAY;
     }
 }
 
-Colors Pokemon::m_get_secondary_type_color(std::experimental::optional<std::string> secondary_type) const
+GUI::Colors Pokemon::m_get_secondary_type_color(std::experimental::optional<std::string> secondary_type) const
 {
     if (secondary_type.value().compare("Fire") == 0)
     {
-        return RED;
+        return GUI::RED;
     }
     else if (secondary_type.value().compare("Water") == 0)
     {
-        return LIGHTBLUE;
+        return GUI::LIGHTBLUE;
     }
     else if (secondary_type.value().compare("Grass") == 0)
     {
-        return GREEN;
+        return GUI::GREEN;
     }
     else if (secondary_type.value().compare("Flying") == 0)
     {
-        return YELLOW;
+        return GUI::YELLOW;
     }
     if (secondary_type.value().compare("Poison") == 0)
     {
-        return MAGENTA;
+        return GUI::MAGENTA;
     }
     else if (secondary_type.value().compare("Psychic") == 0)
     {
-        return LIGHTMAGENTA;
+        return GUI::LIGHTMAGENTA;
     }
     else if (secondary_type.value().compare("Electric") == 0)
     {
-        return YELLOW;
+        return GUI::YELLOW;
     }
     else if (secondary_type.value().compare("ICE") == 0)
     {
-        return CYAN;
+        return GUI::CYAN;
     }
     else
     {
-        return LIGHTGRAY;
+        return GUI::LIGHTGRAY;
     }
 }
 
@@ -101,13 +101,8 @@ void Pokemon::m_set_pokemon_type(std::string primary_type, std::experimental::op
     }
 
     m_type->pokemon_primary_type_name = primary_type;
-    Colors primary_type_color = m_get_primary_type_color(primary_type);
+    GUI::Colors primary_type_color = m_get_primary_type_color(primary_type);
     m_type->primary_type_color = primary_type_color;
-
-    // check if secondary type
-    //  m_type->pokemon_primary_type_name = primary_type
-    //   compare primary type to input,  and secondary type to input
-    //   assign type colors based off comparison
 }
 
 PokeType *Pokemon::get_pokemon_type() const
@@ -151,23 +146,23 @@ void Pokemon::display_pokemon() const
 
     if (get_is_shiny() && get_is_legendary())
     {
-        style_cout(YELLOW, std::cout, "** SHINY LEGENDARY **");
+        GUI::style_cout(GUI::YELLOW, std::cout, "** SHINY LEGENDARY **");
     }
     else if (get_is_shiny() && !get_is_legendary())
     {
-        style_cout(YELLOW, std::cout, "** SHINY **");
+        GUI::style_cout(GUI::YELLOW, std::cout, "** SHINY **");
     }
     else if (get_is_legendary() && !get_is_shiny())
     {
-        style_cout(YELLOW, std::cout, "** LEGENDARY **");
+        GUI::style_cout(GUI::YELLOW, std::cout, "** LEGENDARY **");
     }
-    style_cout(LIGHTCYAN, std::cout, " [ " + get_name() + " | Type :: ");
-    style_cout(intToColor(type->primary_type_color), std::cout, type->pokemon_primary_type_name);
+    GUI::style_cout(GUI::LIGHTCYAN, std::cout, " [ " + get_name() + " | Type :: ");
+    GUI::style_cout(GUI::intToColor(type->primary_type_color), std::cout, type->pokemon_primary_type_name);
     if (secondary_type_name)
     {
-        style_cout(DARKGRAY, std::cout, "/ ");
-        style_cout(intToColor(type->secondary_type_color.value()), std::cout, "" + secondary_type_name.value());
+        GUI::style_cout(GUI::DARKGRAY, std::cout, "/ ");
+        GUI::style_cout(GUI::intToColor(type->secondary_type_color.value()), std::cout, "" + secondary_type_name.value());
     }
 
-    style_cout(LIGHTCYAN, std::cout, " ]\n");
+    GUI::style_cout(GUI::LIGHTCYAN, std::cout, " ]\n");
 };

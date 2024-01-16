@@ -60,19 +60,19 @@ void User::display_ball_inventory() const
     {
         if (m_ball_inventory[i].get_ball_type().compare("Pokeball") == 0)
         {
-            style_cout(RED, std::cout, m_ball_inventory[i].get_ball_type() + "\n");
+            GUI::style_cout(GUI::RED, std::cout, m_ball_inventory[i].get_ball_type() + "\n");
         }
         else if (m_ball_inventory[i].get_ball_type().compare("Greatball") == 0)
         {
-            style_cout(LIGHTBLUE, std::cout, m_ball_inventory[i].get_ball_type() + "\n");
+            GUI::style_cout(GUI::LIGHTBLUE, std::cout, m_ball_inventory[i].get_ball_type() + "\n");
         }
         else if (m_ball_inventory[i].get_ball_type().compare("Ultraball") == 0)
         {
-            style_cout(YELLOW, std::cout, m_ball_inventory[i].get_ball_type() + "\n");
+           GUI:: style_cout(GUI::YELLOW, std::cout, m_ball_inventory[i].get_ball_type() + "\n");
         }
         else if (m_ball_inventory[i].get_ball_type().compare("Masterball") == 0)
         {
-            style_cout(MAGENTA, std::cout, m_ball_inventory[i].get_ball_type() + "\n");
+            GUI::style_cout(GUI::MAGENTA, std::cout, m_ball_inventory[i].get_ball_type() + "\n");
         }
     }
 }
