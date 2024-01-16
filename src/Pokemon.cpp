@@ -1,8 +1,15 @@
 #include "../includes/Pokemon.h"
 #include <time.h>
+#include "../includes/console_gui/Gui.h"
 
 Pokemon::Pokemon(std::string name, std::string primary_type, std::experimental::optional<std::string> secondary_type, bool is_legendary)
-    : m_pokemon_name(name), m_pokemon_primary_type(primary_type), m_pokemon_secondary_type(secondary_type), m_is_legendary(is_legendary){};
+    : m_pokemon_name(name), m_pokemon_primary_type(primary_type), m_pokemon_secondary_type(secondary_type), m_is_legendary(is_legendary){
+                                                                                                                // m_set_pokemon_type();
+                                                                                                            };
+
+void Pokemon::m_set_pokemon_type()
+{
+}
 
 std::string Pokemon::get_name() const
 {
@@ -48,21 +55,22 @@ void Pokemon::display_pokemon() const
 
     if (get_is_shiny() && get_is_legendary())
     {
-        std::cout << "** SHINY LEGENDARY **";
+        style_cout(YELLOW, std::cout, "** SHINY LEGENDARY **");
     }
     else if (get_is_shiny() && !get_is_legendary())
     {
-        std::cout << "** SHINY **";
+        style_cout(YELLOW, std::cout, "** SHINY **");
     }
     else if (get_is_legendary() && !get_is_shiny())
     {
-        std::cout << "** LEGENDARY **";
+        style_cout(YELLOW, std::cout, "** LEGENDARY **");
     }
+    style_cout(LIGHTCYAN, std::cout, " [ " + get_name() + " | Type :: ");
     std::cout << " [ " << get_name() << " | Type :: " << get_primary_type();
     if (secondary_type)
     {
-        std::cout << " / " << secondary_type.value();
+        style_cout(DARKGRAY, std::cout, "/ " + secondary_type.value());
     }
 
-    std::cout << " ]";
+    style_cout(LIGHTCYAN, std::cout, " ]\n");
 };
