@@ -34,5 +34,6 @@ unsigned short int get_menu();
 void display_tutorial();
 void welcome_user(std::string username);
 void style_cout(Colors color, std::ostream &text_stream, const std::string &text);
+Colors intToColor(int colorCode);
 
 #endif
