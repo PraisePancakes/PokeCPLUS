@@ -1,6 +1,7 @@
 #include "../includes/User.h"
 #include <unistd.h>
 #include "../includes/console_gui/Gui.h"
+#include <time.h>
 
 User::User(std::string username) : m_username(username)
 {
@@ -68,7 +69,7 @@ void User::display_ball_inventory() const
         }
         else if (m_ball_inventory[i].get_ball_type().compare("Ultraball") == 0)
         {
-           GUI:: style_cout(GUI::YELLOW, std::cout, m_ball_inventory[i].get_ball_type() + "\n");
+            GUI::style_cout(GUI::YELLOW, std::cout, m_ball_inventory[i].get_ball_type() + "\n");
         }
         else if (m_ball_inventory[i].get_ball_type().compare("Masterball") == 0)
         {
@@ -98,7 +99,7 @@ Pokemon *User::get_starter_pokemon(unsigned short int selection_choice) const
     switch (selection_choice)
     {
     case 1:
-        starter_pokemon = new Pokemon("Pikachu", "Lightning", std::experimental::nullopt, false);
+        starter_pokemon = new Pokemon("Pikachu", "Electric", std::experimental::nullopt, false);
         break;
     case 2:
         starter_pokemon = new Pokemon("Squirtle", "Water", std::experimental::nullopt, false);
@@ -142,8 +143,46 @@ void User::display_user_stats() const
 {
     std::string username = get_username();
     unsigned long int balls_thrown = get_balls_thrown();
+    std::string string_balls_thrown = std::to_string(balls_thrown);
 
-    std::cout << "YOUR STATS { \nUsername : " << username << " \nTotal pokeball throws : " << balls_thrown << " \nShowcase :: ";
+    GUI::style_cout(GUI::CYAN, std::cout, "YOUR STATS { \n");
+    GUI::style_cout(GUI::GREEN, std::cout, "\tUsername : ");
+    GUI::style_cout(GUI::MAGENTA, std::cout, username);
+    GUI::style_cout(GUI::GREEN, std::cout, "\n\tTotal pokeball throws : ");
+    GUI::style_cout(GUI::MAGENTA, std::cout, string_balls_thrown);
+    GUI::style_cout(GUI::GREEN, std::cout, "\n\tShowcase :: ");
     display_showcase_pokemon();
-    std::cout << "}\n";
+    GUI::style_cout(GUI::CYAN, std::cout, "} \n");
 }
+
+bool User::throw_ball(Pokemon *pokemon)
+{
+    srand(time(NULL));
+    int catch_chance_modifiable_ciel = 5;
+    const int CATCH_CHANCE_MIN = 1;
+    int success = 0;
+
+    m_balls_thrown += 1;
+
+    if (pokemon->get_is_legendary())
+    {
+        catch_chance_modifiable_ciel = 200;
+
+        success = (rand() % catch_chance_modifiable_ciel - CATCH_CHANCE_MIN) + CATCH_CHANCE_MIN;
+        if (success >= 188 && success <= 195)
+        {
+            return true;
+        }
+        return false;
+    }
+    else
+    {
+        success = (rand() % catch_chance_modifiable_ciel - CATCH_CHANCE_MIN) + CATCH_CHANCE_MIN;
+        if (success == 3 || success == 2)
+        {
+            return true;
+        }
+
+        return false;
+    }
+};

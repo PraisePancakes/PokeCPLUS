@@ -33,11 +33,20 @@ namespace GUI
         MENU_EXIT = 4,
     };
 
-    unsigned short int get_menu();
+    enum CatchOptions
+    {
+        CATCH = 1,
+        RUN = 2,
+    };
+
+    unsigned short int
+    get_menu();
     void display_tutorial();
     void welcome_user(std::string username);
     void style_cout(Colors color, std::ostream &text_stream, const std::string &text);
     Colors intToColor(int colorCode);
+    unsigned short int get_catch_option();
+
 }
 
 #endif

@@ -7,8 +7,6 @@
 #include <vector>
 #include "Ball.h"
 
-
-
 class User
 {
 private:
@@ -22,6 +20,7 @@ private:
 public:
     User(std::string username); // arg list : username, pokedex, pokeballs
 
+    bool throw_ball(Pokemon *pokemon);
     void push_to_pokedex(Pokemon *new_pokemon);
     void push_to_ball_inventory(Ball *new_ball);
     void display_pokedex() const;

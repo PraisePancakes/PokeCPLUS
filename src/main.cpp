@@ -73,7 +73,6 @@ int main(int argc, char *argv[])
 
     // game flow
     unsigned short int menu_option = 0;
-    Data *data = new Data();
 
     while (menu_option != GUI::MENU_EXIT)
     {
@@ -86,23 +85,29 @@ int main(int argc, char *argv[])
         case GUI::MENU_CATCH:
             // CATCH FLOW , 2s Walk -> pokemon appears -> catch | run
             {
+                Data *data = new Data();
                 system("cls");
                 user.walk();
                 Pokemon *random_pokemon = data->get_random_pokemon();
-                std::cout << "here " << random_pokemon->get_name();
                 random_pokemon->set_shiny();
 
-                std::cout << "-=-=- YOU ENCOUNTERED ";
+                GUI::style_cout(GUI::YELLOW, std::cout, "-=-=- YOU ENCOUNTERED ");
                 random_pokemon->display_pokemon();
-                std::cout << " -=-=-\n";
-                // if(catch)
-                // -- catch --
-                user.push_to_pokedex(random_pokemon);
+                GUI::style_cout(GUI::YELLOW, std::cout, " -=-=-");
+                std::cout << "\n";
 
-                // else
-                // run
+                unsigned short int catch_option = GUI::get_catch_option();
+                if (catch_option == GUI::CATCH)
+                {
+                    bool successful_catch = user.throw_ball(random_pokemon);
+                    user.push_to_pokedex(random_pokemon);
+                }
+                else if (catch_option == GUI::RUN)
+                {
+                    random_pokemon->display_fled();
+                }
+                delete data;
             }
-            delete data;
 
             break;
         case GUI::MENU_VIEW_POKEDEX:

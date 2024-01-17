@@ -33,6 +33,7 @@ public:
     bool get_is_shiny() const;
     bool get_is_legendary() const;
     void display_pokemon_type() const;
+    void display_fled() const;
 };
 
 #endif

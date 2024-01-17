@@ -15,7 +15,7 @@ namespace GUI
         unsigned short int option = 0;
 
         style_cout(YELLOW, std::cout, "=-=-= POKEMON CPLUS =-=-=\n");
-        style_cout(WHITE, std::cout, "1 : Catch\n2 : Pokedex\n3 : Showcase Pokemon\n4 : Quit");
+        style_cout(WHITE, std::cout, "1 : Catch\n2 : Pokedex\n3 : Showcase Pokemon\n4 : Quit\n");
         std::cin >> option;
 
         return option;
@@ -75,4 +75,14 @@ namespace GUI
             return LIGHTGRAY; // Default color
         }
     }
+
+    unsigned short int get_catch_option()
+    {
+        unsigned short int option = 0;
+        style_cout(GREEN, std::cout, "\t[1] catch\t");
+        style_cout(RED, std::cout, "[2] run\n");
+        std::cin >> option;
+        return option;
+    }
+
 }

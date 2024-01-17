@@ -77,7 +77,7 @@ GUI::Colors Pokemon::m_get_secondary_type_color(std::experimental::optional<std:
     {
         return GUI::YELLOW;
     }
-    else if (secondary_type.value().compare("ICE") == 0)
+    else if (secondary_type.value().compare("Ice") == 0)
     {
         return GUI::CYAN;
     }
@@ -142,14 +142,15 @@ void Pokemon::display_pokemon_type() const
 {
     PokeType *type = get_pokemon_type();
     auto secondary_type_name = type->pokemon_secondary_type_name;
-    GUI::style_cout(GUI::intToColor(type->primary_type_color), std::cout, " | Type :: " + type->pokemon_primary_type_name);
+    GUI::style_cout(GUI::CYAN, std::cout, " | Type :: ");
+    GUI::style_cout(GUI::intToColor(type->primary_type_color), std::cout, type->pokemon_primary_type_name);
     if (secondary_type_name)
     {
         GUI::style_cout(GUI::DARKGRAY, std::cout, "/ ");
         GUI::style_cout(GUI::intToColor(type->secondary_type_color.value()), std::cout, "" + secondary_type_name.value());
     }
 
-    GUI::style_cout(GUI::LIGHTCYAN, std::cout, " ]\n");
+    GUI::style_cout(GUI::LIGHTCYAN, std::cout, " ]");
 }
 
 void Pokemon::display_pokemon() const
@@ -170,3 +171,9 @@ void Pokemon::display_pokemon() const
     GUI::style_cout(GUI::LIGHTCYAN, std::cout, " [ " + get_name());
     display_pokemon_type();
 };
+
+void Pokemon::display_fled() const
+{
+    GUI::style_cout(GUI::RED, std::cout, ":: " + get_name());
+    GUI::style_cout(GUI::RED, std::cout, "fled ::");
+}
