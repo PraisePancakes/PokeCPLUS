@@ -10,7 +10,6 @@
 int main(int argc, char *argv[])
 {
     HANDLE hc = GetStdHandle(STD_OUTPUT_HANDLE);
-    // welcome
     GUI::display_tutorial();
     getch();
     // get user
@@ -74,11 +73,9 @@ int main(int argc, char *argv[])
 
     // game flow
     unsigned short int menu_option = 0;
-    const unsigned short int MENU_EXIT = 3;
+    Data *data = new Data();
 
-    Data data;
-
-    while (menu_option != MENU_EXIT)
+    while (menu_option != GUI::MENU_EXIT)
     {
         system("cls");
         user.display_user_stats();
@@ -91,13 +88,13 @@ int main(int argc, char *argv[])
             {
                 system("cls");
                 user.walk();
-                Pokemon *random_pokemon = data.get_random_pokemon();
+                Pokemon *random_pokemon = data->get_random_pokemon();
+                std::cout << "here " << random_pokemon->get_name();
                 random_pokemon->set_shiny();
 
                 std::cout << "-=-=- YOU ENCOUNTERED ";
                 random_pokemon->display_pokemon();
                 std::cout << " -=-=-\n";
-
                 // if(catch)
                 // -- catch --
                 user.push_to_pokedex(random_pokemon);
@@ -105,6 +102,7 @@ int main(int argc, char *argv[])
                 // else
                 // run
             }
+            delete data;
 
             break;
         case GUI::MENU_VIEW_POKEDEX:
@@ -114,8 +112,11 @@ int main(int argc, char *argv[])
             GUI::style_cout(GUI::LIGHTMAGENTA, std::cout, "press any key to go back...\n");
             getch();
             break;
-        case MENU_EXIT:
+        case GUI::MENU_SHOWCASE_POKEMON:
+            break;
+        case GUI::MENU_EXIT:
             GUI::style_cout(GUI::RED, std::cout, "PROCESS TERMINATED\n");
+
             break;
         default:
             GUI::style_cout(GUI::RED, std::cout, "[ERROR] INVALID MENU OPTION\n");

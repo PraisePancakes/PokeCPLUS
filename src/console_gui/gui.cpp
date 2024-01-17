@@ -15,7 +15,7 @@ namespace GUI
         unsigned short int option = 0;
 
         style_cout(YELLOW, std::cout, "=-=-= POKEMON CPLUS =-=-=\n");
-        style_cout(WHITE, std::cout, "1 : Catch\n2 : Pokedex\n3 : Quit\n");
+        style_cout(WHITE, std::cout, "1 : Catch\n2 : Pokedex\n3 : Showcase Pokemon\n4 : Quit");
         std::cin >> option;
 
         return option;
