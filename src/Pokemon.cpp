@@ -138,11 +138,22 @@ bool Pokemon::get_is_legendary() const
     return m_is_legendary;
 }
 
-void Pokemon::display_pokemon() const
+void Pokemon::display_pokemon_type() const
 {
     PokeType *type = get_pokemon_type();
-
     auto secondary_type_name = type->pokemon_secondary_type_name;
+    GUI::style_cout(GUI::intToColor(type->primary_type_color), std::cout, " | Type :: " + type->pokemon_primary_type_name);
+    if (secondary_type_name)
+    {
+        GUI::style_cout(GUI::DARKGRAY, std::cout, "/ ");
+        GUI::style_cout(GUI::intToColor(type->secondary_type_color.value()), std::cout, "" + secondary_type_name.value());
+    }
+
+    GUI::style_cout(GUI::LIGHTCYAN, std::cout, " ]\n");
+}
+
+void Pokemon::display_pokemon() const
+{
 
     if (get_is_shiny() && get_is_legendary())
     {
@@ -156,13 +167,6 @@ void Pokemon::display_pokemon() const
     {
         GUI::style_cout(GUI::YELLOW, std::cout, "** LEGENDARY **");
     }
-    GUI::style_cout(GUI::LIGHTCYAN, std::cout, " [ " + get_name() + " | Type :: ");
-    GUI::style_cout(GUI::intToColor(type->primary_type_color), std::cout, type->pokemon_primary_type_name);
-    if (secondary_type_name)
-    {
-        GUI::style_cout(GUI::DARKGRAY, std::cout, "/ ");
-        GUI::style_cout(GUI::intToColor(type->secondary_type_color.value()), std::cout, "" + secondary_type_name.value());
-    }
-
-    GUI::style_cout(GUI::LIGHTCYAN, std::cout, " ]\n");
+    GUI::style_cout(GUI::LIGHTCYAN, std::cout, " [ " + get_name());
+    display_pokemon_type();
 };
