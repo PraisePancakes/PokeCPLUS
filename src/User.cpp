@@ -191,7 +191,7 @@ bool User::throw_ball(const Ball *ball, Pokemon *pokemon)
 
         success = (rand() % catch_chance_modifiable_ciel - CATCH_CHANCE_MIN) + CATCH_CHANCE_MIN;
         success += ball->get_ball_mult();
-        if (success >= 188 && success <= 195 || ball->get_ball_type().compare("Masterball") == 0)
+        if (success >= 188 && success <= 195)
         {
             return true;
         }
