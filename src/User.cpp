@@ -61,19 +61,20 @@ void User::display_ball_inventory() const
     {
         if (m_ball_inventory[i].get_ball_type().compare("Pokeball") == 0)
         {
-            GUI::style_cout(GUI::RED, std::cout, m_ball_inventory[i].get_ball_type() + "\n");
+
+            GUI::style_cout(GUI::RED, std::cout, std::to_string(i) + " " + m_ball_inventory[i].get_ball_type() + "\n");
         }
         else if (m_ball_inventory[i].get_ball_type().compare("Greatball") == 0)
         {
-            GUI::style_cout(GUI::LIGHTBLUE, std::cout, m_ball_inventory[i].get_ball_type() + "\n");
+            GUI::style_cout(GUI::LIGHTBLUE, std::cout, std::to_string(i) + " " + m_ball_inventory[i].get_ball_type() + "\n");
         }
         else if (m_ball_inventory[i].get_ball_type().compare("Ultraball") == 0)
         {
-            GUI::style_cout(GUI::YELLOW, std::cout, m_ball_inventory[i].get_ball_type() + "\n");
+            GUI::style_cout(GUI::YELLOW, std::cout, std::to_string(i) + " " + m_ball_inventory[i].get_ball_type() + "\n");
         }
         else if (m_ball_inventory[i].get_ball_type().compare("Masterball") == 0)
         {
-            GUI::style_cout(GUI::MAGENTA, std::cout, m_ball_inventory[i].get_ball_type() + "\n");
+            GUI::style_cout(GUI::MAGENTA, std::cout, std::to_string(i) + " " + m_ball_inventory[i].get_ball_type() + "\n");
         }
     }
 }
@@ -154,8 +155,19 @@ void User::display_user_stats() const
     display_showcase_pokemon();
     GUI::style_cout(GUI::CYAN, std::cout, "} \n");
 }
+void User::m_remove_ball(const Ball *ball)
+{
+    for (size_t i = 0; i < m_ball_inventory.size(); i++)
+    {
+        if (m_ball_inventory[i].get_ball_type().compare(ball->get_ball_type()) == 0)
+        {
+            m_ball_inventory.erase(m_ball_inventory.begin() + i);
+            return;
+        }
+    }
+}
 
-bool User::throw_ball(Pokemon *pokemon)
+bool User::throw_ball(const Ball *ball, Pokemon *pokemon)
 {
     srand(time(NULL));
     int catch_chance_modifiable_ciel = 5;
@@ -163,13 +175,14 @@ bool User::throw_ball(Pokemon *pokemon)
     int success = 0;
 
     m_balls_thrown += 1;
-
+    m_remove_ball(ball);
     if (pokemon->get_is_legendary())
     {
         catch_chance_modifiable_ciel = 200;
 
         success = (rand() % catch_chance_modifiable_ciel - CATCH_CHANCE_MIN) + CATCH_CHANCE_MIN;
-        if (success >= 188 && success <= 195)
+        success += ball->get_ball_mult();
+        if (success >= 188 && success <= 195 || ball->get_ball_type().compare("Masterball") == 0)
         {
             return true;
         }
@@ -186,3 +199,12 @@ bool User::throw_ball(Pokemon *pokemon)
         return false;
     }
 };
+
+Ball User::choose_ball()
+{
+    int option = 0;
+    display_ball_inventory();
+    std::cin >> option;
+
+    return m_ball_inventory[option];
+}

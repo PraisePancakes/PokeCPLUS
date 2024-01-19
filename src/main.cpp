@@ -99,8 +99,14 @@ int main(int argc, char *argv[])
                 unsigned short int catch_option = GUI::get_catch_option();
                 if (catch_option == GUI::CATCH)
                 {
-                    bool successful_catch = user.throw_ball(random_pokemon);
-                    user.push_to_pokedex(random_pokemon);
+                    // chose ball
+                    GUI::style_cout(GUI::MAGENTA, std::cout, "--- CHOOSE A BALL ---\n");
+                    Ball new_ball = user.choose_ball();
+                    bool successful_catch = user.throw_ball(&new_ball, random_pokemon);
+                    if (successful_catch)
+                    {
+                        user.push_to_pokedex(random_pokemon);
+                    } // else throw again, if max throws on pokemon (based on pokemon) then pokemon flees
                 }
                 else if (catch_option == GUI::RUN)
                 {
@@ -118,6 +124,11 @@ int main(int argc, char *argv[])
             getch();
             break;
         case GUI::MENU_SHOWCASE_POKEMON:
+            getch();
+            break;
+        case GUI::MENU_VIEW_POKEBALLS:
+            user.display_ball_inventory();
+            getch();
             break;
         case GUI::MENU_EXIT:
             GUI::style_cout(GUI::RED, std::cout, "PROCESS TERMINATED\n");

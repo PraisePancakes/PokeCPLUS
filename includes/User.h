@@ -16,11 +16,12 @@ private:
     void m_init_ball_inventory();
     Pokemon *m_showcase;
     unsigned long int m_balls_thrown;
+    void m_remove_ball(const Ball *ball);
 
 public:
     User(std::string username); // arg list : username, pokedex, pokeballs
 
-    bool throw_ball(Pokemon *pokemon);
+    bool throw_ball(const Ball *ball, Pokemon *pokemon);
     void push_to_pokedex(Pokemon *new_pokemon);
     void push_to_ball_inventory(Ball *new_ball);
     void display_pokedex() const;
@@ -31,6 +32,7 @@ public:
     void display_user_stats() const;
     unsigned long int get_balls_thrown() const;
     void walk() const;
+    Ball choose_ball();
     std::string get_username() const;
     // ~User(); future deconstructor
 };

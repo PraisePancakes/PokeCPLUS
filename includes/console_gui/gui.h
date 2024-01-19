@@ -30,7 +30,8 @@ namespace GUI
         MENU_CATCH = 1,
         MENU_VIEW_POKEDEX = 2,
         MENU_SHOWCASE_POKEMON = 3,
-        MENU_EXIT = 4,
+        MENU_VIEW_POKEBALLS = 4,
+        MENU_EXIT = 5,
     };
 
     enum CatchOptions
