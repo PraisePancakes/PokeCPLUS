@@ -105,8 +105,15 @@ int main(int argc, char *argv[])
                     bool successful_catch = user.throw_ball(&new_ball, random_pokemon);
                     if (successful_catch)
                     {
+                        GUI::style_cout(GUI::GREEN, std::cout, " :: CATCH SUCCESSFUL ::\n");
+                        random_pokemon->display_pokemon();
                         user.push_to_pokedex(random_pokemon);
-                    } // else throw again, if max throws on pokemon (based on pokemon) then pokemon flees
+                        getch();
+                    }
+                    else // @IMPLEMENT else throw again, if max throws on pokemon (based on pokemon) then pokemon flees
+                    {
+                        random_pokemon->display_fled();
+                    }
                 }
                 else if (catch_option == GUI::RUN)
                 {
@@ -118,12 +125,14 @@ int main(int argc, char *argv[])
             break;
         case GUI::MENU_VIEW_POKEDEX:
             system("cls");
-            std::cout << "=-=-= YOUR POKEDEX =-=-=\n";
+            GUI::style_cout(GUI::YELLOW, std::cout, "=-=-= YOUR POKEDEX =-=-=\n");
             user.display_pokedex();
             GUI::style_cout(GUI::LIGHTMAGENTA, std::cout, "press any key to go back...\n");
             getch();
             break;
         case GUI::MENU_SHOWCASE_POKEMON:
+            GUI::style_cout(GUI::YELLOW, std::cout, "=-=-= CHOOSE A SHOWCASE =-=-=\n");
+            user.set_showcase_pokemon();
             getch();
             break;
         case GUI::MENU_VIEW_POKEBALLS:

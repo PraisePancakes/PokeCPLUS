@@ -27,7 +27,7 @@ public:
     void display_pokedex() const;
     void display_ball_inventory() const;
     Pokemon *get_starter_pokemon(unsigned short int selection_choice) const;
-    void set_showcase_pokemon(Pokemon *pokemon);
+    void set_showcase_pokemon();
     void display_showcase_pokemon() const;
     void display_user_stats() const;
     unsigned long int get_balls_thrown() const;

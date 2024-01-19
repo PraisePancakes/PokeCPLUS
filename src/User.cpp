@@ -19,7 +19,7 @@ void User::display_pokedex() const
 {
     for (size_t i = 0; i < m_pokedex.size(); ++i)
     {
-        std::cout << "{" << i + 1 << "} ";
+        std::cout << "{" << i << "} ";
         m_pokedex[i].display_pokemon();
         std::cout << "\n";
     };
@@ -118,9 +118,18 @@ Pokemon *User::get_starter_pokemon(unsigned short int selection_choice) const
     return starter_pokemon;
 }
 
-void User::set_showcase_pokemon(Pokemon *pokemon)
+void User::set_showcase_pokemon()
 {
-    m_showcase = pokemon;
+    int option = 0;
+    display_pokedex();
+    std::cin >> option;
+    while (option >= m_pokedex.size())
+    {
+        GUI::style_cout(GUI::RED, std::cout, "[ERROR] NO SUCH POKEMON EXISTS TRY AGAIN \n");
+        std::cin >> option;
+    }
+
+    m_showcase = &(m_pokedex[option]);
 };
 
 void User::display_showcase_pokemon() const
