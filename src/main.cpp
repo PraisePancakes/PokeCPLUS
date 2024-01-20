@@ -7,7 +7,7 @@
 #include <conio.h>
 #define ANY_KEY() (GUI::style_cout(GUI::LIGHTMAGENTA, std::cout, "press any key to continue...\n"))
 
-// what to do today? create style prints, enum pokemon types
+// what to do today? create an xp and points system
 int main(int argc, char *argv[])
 {
     HANDLE hc = GetStdHandle(STD_OUTPUT_HANDLE);

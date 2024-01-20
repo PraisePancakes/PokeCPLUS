@@ -6,10 +6,11 @@
 #include <iostream>
 #include <vector>
 #include "Ball.h"
+#include <memory>
 
 typedef struct BallItem
 {
-    Ball *ball;
+    std::unique_ptr<Ball> ball;
     int count;
 } BallItem;
 

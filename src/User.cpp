@@ -50,10 +50,10 @@ void User::push_to_pokedex(Pokemon *new_pokemon)
 void User::push_to_ball_inventory(Ball *new_ball)
 {
     BallItem new_item;
-    new_item.ball = new_ball;
+    new_item.ball = std::make_unique<Ball>(*new_ball);
     new_item.count = 1;
 
-    m_ball_inventory.push_back(new_item);
+    m_ball_inventory.push_back(std::move(new_item));
 };
 
 void User::m_init_ball_inventory()
@@ -71,6 +71,8 @@ void User::m_init_ball_inventory()
 
     new_ball = new Ball("Masterball");
     push_to_ball_inventory(new_ball);
+
+    delete new_ball;
 }
 
 void User::display_ball_inventory()
@@ -192,7 +194,7 @@ void User::m_remove_ball(const Ball *ball)
 
     for (size_t i = 0; i < m_ball_inventory.size(); i++)
     {
-        if (m_ball_inventory[i].count > 0)
+        if (m_ball_inventory[i].count > 0 && m_ball_inventory[i].ball->get_ball_type() == ball->get_ball_type())
         {
             m_ball_inventory[i].count--;
             return;
@@ -211,6 +213,11 @@ bool User::throw_ball(const Ball *ball, Pokemon *pokemon)
     m_balls_thrown += 1;
     m_remove_ball(ball);
 
+    if (ball->get_ball_type() == "Masterball")
+    {
+        return true;
+    }
+
     if (pokemon->get_is_legendary())
     {
         catch_chance_modifiable_ciel = 200;
@@ -228,7 +235,7 @@ bool User::throw_ball(const Ball *ball, Pokemon *pokemon)
     {
         success = (rand() % catch_chance_modifiable_ciel - CATCH_CHANCE_MIN) + CATCH_CHANCE_MIN;
 
-        if (success >= 3)
+        if (success >= 2)
         {
             return true;
         }
