@@ -5,12 +5,14 @@
 #include "../includes/Ball.h"
 #include "../includes/data/Data.h"
 #include <conio.h>
+#define ANY_KEY() (GUI::style_cout(GUI::LIGHTMAGENTA, std::cout, "press any key to continue...\n"))
 
 // what to do today? create style prints, enum pokemon types
 int main(int argc, char *argv[])
 {
     HANDLE hc = GetStdHandle(STD_OUTPUT_HANDLE);
     GUI::display_tutorial();
+    ANY_KEY();
     getch();
     // get user
     // first save only
@@ -62,12 +64,12 @@ int main(int argc, char *argv[])
         }
     } while (starter_option < 1 || starter_option > 4);
 
-    GUI::style_cout(GUI::LIGHTMAGENTA, std::cout, "press any key to continue...\n");
+    ANY_KEY();
     getch();
     system("cls");
     GUI::style_cout(GUI::CYAN, std::cout, ":: HERE ARE YOUR STARTING BALLS ::\n");
     user.display_ball_inventory();
-    GUI::style_cout(GUI::LIGHTMAGENTA, std::cout, "press any key to continue...\n");
+    ANY_KEY();
     getch();
     system("cls");
 
@@ -113,8 +115,22 @@ int main(int argc, char *argv[])
                         break;
                     }
 
+                    unsigned short int MAX_THROWS = 5;
+
+                    if (random_pokemon->get_is_legendary())
+                    {
+                        MAX_THROWS = 2;
+                    }
+
+                    unsigned short int current_throws = 0;
                     while (!successful_catch)
                     {
+                        if (current_throws == MAX_THROWS)
+                        {
+                            GUI::style_cout(GUI::RED, std::cout, " :: POKEMON GOT IMPATIENT :: \n");
+                            random_pokemon->display_fled();
+                            break;
+                        }
                         GUI::style_cout(GUI::RED, std::cout, " :: BALL MISSED, WOULD YOU LIKE TO THROW AGAIN? :: \n");
                         catch_option = GUI::get_catch_option();
                         if (catch_option == GUI::RUN)
@@ -139,6 +155,7 @@ int main(int argc, char *argv[])
                             user.push_to_pokedex(random_pokemon);
                             break;
                         }
+                        current_throws++;
                     }
 
                     getch();
@@ -155,7 +172,7 @@ int main(int argc, char *argv[])
             system("cls");
             GUI::style_cout(GUI::YELLOW, std::cout, "=-=-= YOUR POKEDEX =-=-=\n");
             user.display_pokedex();
-            GUI::style_cout(GUI::LIGHTMAGENTA, std::cout, "press any key to go back...\n");
+            ANY_KEY();
             getch();
             break;
         case GUI::MENU_SHOWCASE_POKEMON:

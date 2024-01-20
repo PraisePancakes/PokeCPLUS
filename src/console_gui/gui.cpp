@@ -7,8 +7,7 @@ namespace GUI
     {
         style_cout(LIGHTBLUE, std::cout, "::\tWELCOME TO POKEMON CPLUS::\n\n|\tCATCH POKEMON\t\t |\n|\tVIEW POKDEX\t\t |\n|\tSHOWCASE POKEMON\t |\n|\tIMPROVE YOUR STATS\t |\n");
         style_cout(LIGHTBLUE, std::cout, "------------------------------\n");
-        style_cout(LIGHTMAGENTA, std::cout, "press any key to continue...\n");
-    }
+        }
 
     unsigned short int get_menu()
     {
