@@ -11,6 +11,7 @@
 int main(int argc, char *argv[])
 {
     HANDLE hc = GetStdHandle(STD_OUTPUT_HANDLE);
+    system("cls");
     GUI::display_tutorial();
     ANY_KEY();
     getch();

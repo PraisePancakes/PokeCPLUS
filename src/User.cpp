@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include "../includes/console_gui/Gui.h"
 #include <time.h>
+#include <conio.h>
 
 User::User(std::string username) : m_username(username)
 {
@@ -13,6 +14,17 @@ User::User(std::string username) : m_username(username)
 std::string User::get_username() const
 {
     return m_username;
+}
+
+void User::m_filter_pokeballs()
+{
+    for (int i = 0; i < m_ball_inventory.size(); i++)
+    {
+        if (m_ball_inventory[i].count == 0)
+        {
+            m_ball_inventory.erase(m_ball_inventory.begin() + i);
+        }
+    }
 }
 
 void User::display_pokedex() const
@@ -37,14 +49,15 @@ void User::push_to_pokedex(Pokemon *new_pokemon)
 
 void User::push_to_ball_inventory(Ball *new_ball)
 {
-    m_balls_thrown++;
-    m_ball_inventory.push_back(*new_ball);
-    delete new_ball;
+    BallItem new_item;
+    new_item.ball = new_ball;
+    new_item.count = 1;
+
+    m_ball_inventory.push_back(new_item);
 };
 
 void User::m_init_ball_inventory()
 {
-
     Ball *new_ball = nullptr;
 
     new_ball = new Ball("Pokeball");
@@ -60,26 +73,31 @@ void User::m_init_ball_inventory()
     push_to_ball_inventory(new_ball);
 }
 
-void User::display_ball_inventory() const
+void User::display_ball_inventory()
 {
+    if (get_ball_inventory_size() == 0)
+    {
+        GUI::style_cout(GUI::RED, std::cout, ":: OUT OF POKEBALLS ::\n");
+        return;
+    }
+    m_filter_pokeballs();
     for (int i = 0; i < m_ball_inventory.size(); i++)
     {
-        if (m_ball_inventory[i].get_ball_type().compare("Pokeball") == 0)
+        if (m_ball_inventory[i].ball->get_ball_type().compare("Pokeball") == 0)
         {
-
-            GUI::style_cout(GUI::RED, std::cout, std::to_string(i) + " " + m_ball_inventory[i].get_ball_type() + "\n");
+            GUI::style_cout(GUI::RED, std::cout, std::to_string(i) + " | " + std::to_string(m_ball_inventory[i].count) + " x Pokeballs\n");
         }
-        else if (m_ball_inventory[i].get_ball_type().compare("Greatball") == 0)
+        else if (m_ball_inventory[i].ball->get_ball_type().compare("Greatball") == 0)
         {
-            GUI::style_cout(GUI::LIGHTBLUE, std::cout, std::to_string(i) + " " + m_ball_inventory[i].get_ball_type() + "\n");
+            GUI::style_cout(GUI::BLUE, std::cout, std::to_string(i) + " | " + std::to_string(m_ball_inventory[i].count) + " x Greatballs\n");
         }
-        else if (m_ball_inventory[i].get_ball_type().compare("Ultraball") == 0)
+        else if (m_ball_inventory[i].ball->get_ball_type().compare("Ultraball") == 0)
         {
-            GUI::style_cout(GUI::YELLOW, std::cout, std::to_string(i) + " " + m_ball_inventory[i].get_ball_type() + "\n");
+            GUI::style_cout(GUI::YELLOW, std::cout, std::to_string(i) + " | " + std::to_string(m_ball_inventory[i].count) + " x Ultraballs\n");
         }
-        else if (m_ball_inventory[i].get_ball_type().compare("Masterball") == 0)
+        else if (m_ball_inventory[i].ball->get_ball_type().compare("Masterball") == 0)
         {
-            GUI::style_cout(GUI::MAGENTA, std::cout, std::to_string(i) + " " + m_ball_inventory[i].get_ball_type() + "\n");
+            GUI::style_cout(GUI::MAGENTA, std::cout, std::to_string(i) + " | " + std::to_string(m_ball_inventory[i].count) + " x Masterballs\n");
         }
     }
 }
@@ -171,11 +189,12 @@ void User::display_user_stats() const
 }
 void User::m_remove_ball(const Ball *ball)
 {
+
     for (size_t i = 0; i < m_ball_inventory.size(); i++)
     {
-        if (m_ball_inventory[i].get_ball_type().compare(ball->get_ball_type()) == 0)
+        if (m_ball_inventory[i].count > 0)
         {
-            m_ball_inventory.erase(m_ball_inventory.begin() + i);
+            m_ball_inventory[i].count--;
             return;
         }
     }
@@ -199,7 +218,6 @@ bool User::throw_ball(const Ball *ball, Pokemon *pokemon)
         success = (rand() % catch_chance_modifiable_ciel - CATCH_CHANCE_MIN) + CATCH_CHANCE_MIN;
         success += ball->get_ball_mult();
 
-        std::cout << " " << success;
         if (success == 69)
         {
             return true;
@@ -221,9 +239,10 @@ bool User::throw_ball(const Ball *ball, Pokemon *pokemon)
 
 Ball User::choose_ball()
 {
+
     int option = 0;
     display_ball_inventory();
     std::cin >> option;
 
-    return m_ball_inventory[option];
+    return *(m_ball_inventory[option].ball);
 }
