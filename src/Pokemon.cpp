@@ -175,5 +175,5 @@ void Pokemon::display_pokemon() const
 void Pokemon::display_fled() const
 {
     GUI::style_cout(GUI::RED, std::cout, ":: " + get_name());
-    GUI::style_cout(GUI::RED, std::cout, "fled ::");
+    GUI::style_cout(GUI::RED, std::cout, " fled ::");
 }

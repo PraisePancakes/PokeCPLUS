@@ -31,6 +31,7 @@ public:
     void display_showcase_pokemon() const;
     void display_user_stats() const;
     unsigned long int get_balls_thrown() const;
+    int get_ball_inventory_size() const;
     void walk() const;
     Ball choose_ball();
     std::string get_username() const;

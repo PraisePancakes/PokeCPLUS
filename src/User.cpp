@@ -25,6 +25,11 @@ void User::display_pokedex() const
     };
 }
 
+int User::get_ball_inventory_size() const
+{
+    return m_ball_inventory.size();
+}
+
 void User::push_to_pokedex(Pokemon *new_pokemon)
 {
     m_pokedex.push_back(*new_pokemon);
@@ -178,6 +183,7 @@ void User::m_remove_ball(const Ball *ball)
 
 bool User::throw_ball(const Ball *ball, Pokemon *pokemon)
 {
+
     srand(time(NULL));
     int catch_chance_modifiable_ciel = 5;
     const int CATCH_CHANCE_MIN = 1;
@@ -185,13 +191,16 @@ bool User::throw_ball(const Ball *ball, Pokemon *pokemon)
 
     m_balls_thrown += 1;
     m_remove_ball(ball);
+
     if (pokemon->get_is_legendary())
     {
         catch_chance_modifiable_ciel = 200;
 
         success = (rand() % catch_chance_modifiable_ciel - CATCH_CHANCE_MIN) + CATCH_CHANCE_MIN;
         success += ball->get_ball_mult();
-        if (success >= 188 && success <= 195)
+
+        std::cout << " " << success;
+        if (success == 69)
         {
             return true;
         }
@@ -200,7 +209,8 @@ bool User::throw_ball(const Ball *ball, Pokemon *pokemon)
     else
     {
         success = (rand() % catch_chance_modifiable_ciel - CATCH_CHANCE_MIN) + CATCH_CHANCE_MIN;
-        if (success == 3 || success == 2)
+
+        if (success >= 3)
         {
             return true;
         }

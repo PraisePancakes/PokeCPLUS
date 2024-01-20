@@ -103,17 +103,45 @@ int main(int argc, char *argv[])
                     GUI::style_cout(GUI::MAGENTA, std::cout, "--- CHOOSE A BALL ---\n");
                     Ball new_ball = user.choose_ball();
                     bool successful_catch = user.throw_ball(&new_ball, random_pokemon);
+
                     if (successful_catch)
                     {
                         GUI::style_cout(GUI::GREEN, std::cout, " :: CATCH SUCCESSFUL ::\n");
                         random_pokemon->display_pokemon();
                         user.push_to_pokedex(random_pokemon);
                         getch();
+                        break;
                     }
-                    else // @IMPLEMENT else throw again, if max throws on pokemon (based on pokemon) then pokemon flees
+
+                    while (!successful_catch)
                     {
-                        random_pokemon->display_fled();
+                        GUI::style_cout(GUI::RED, std::cout, " :: BALL MISSED, WOULD YOU LIKE TO THROW AGAIN? :: \n");
+                        catch_option = GUI::get_catch_option();
+                        if (catch_option == GUI::RUN)
+                        {
+                            random_pokemon->display_fled();
+                            break;
+                        }
+
+                        if (user.get_ball_inventory_size() == 0)
+                        {
+                            GUI::style_cout(GUI::RED, std::cout, " :: YOU RAN OUT OF POKEBALLS :: \n");
+                            random_pokemon->display_fled();
+                            break;
+                        }
+                        Ball new_ball = user.choose_ball();
+                        bool successful_catch = user.throw_ball(&new_ball, random_pokemon);
+
+                        if (successful_catch)
+                        {
+                            GUI::style_cout(GUI::GREEN, std::cout, " :: CATCH SUCCESSFUL ::\n");
+                            random_pokemon->display_pokemon();
+                            user.push_to_pokedex(random_pokemon);
+                            break;
+                        }
                     }
+
+                    getch();
                 }
                 else if (catch_option == GUI::RUN)
                 {
