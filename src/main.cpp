@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
         getline(std::cin, username);
     }
 
-    User user(username); // first save only
+    User user(username, 0, 0, 0); // first save only
 
     system("cls");
     GUI::welcome_user(user.get_username()); // first || > saves

@@ -4,16 +4,31 @@
 #include <time.h>
 #include <conio.h>
 
-User::User(std::string username) : m_username(username)
+User::User(std::string username, unsigned long int balls_thrown, unsigned long int xp, unsigned long int level)
+    : m_balls_thrown(balls_thrown), m_username(username), m_xp(xp), m_level(level)
 {
     m_init_ball_inventory();
     m_showcase = nullptr;
-    m_balls_thrown = 0;
 };
 
 std::string User::get_username() const
 {
     return m_username;
+}
+
+void User::m_filter_level()
+{
+    switch (m_xp)
+    {
+    case 1 ... 499:
+        m_level = 0;
+        m_xp = 0;
+        break;
+    case 500 ... 1000:
+        m_level = 1;
+        m_xp = 0;
+        break;
+    }
 }
 
 void User::m_filter_pokeballs()
@@ -183,6 +198,10 @@ void User::display_user_stats() const
     GUI::style_cout(GUI::CYAN, std::cout, "YOUR STATS { \n");
     GUI::style_cout(GUI::GREEN, std::cout, "\tUsername : ");
     GUI::style_cout(GUI::MAGENTA, std::cout, username);
+    GUI::style_cout(GUI::GREEN, std::cout, "\tXp : ");
+    GUI::style_cout(GUI::MAGENTA, std::cout, std::to_string(m_xp));
+    GUI::style_cout(GUI::GREEN, std::cout, "\tLevel : ");
+    GUI::style_cout(GUI::MAGENTA, std::cout, std::to_string(m_level));
     GUI::style_cout(GUI::GREEN, std::cout, "\n\tTotal pokeball throws : ");
     GUI::style_cout(GUI::MAGENTA, std::cout, string_balls_thrown);
     GUI::style_cout(GUI::GREEN, std::cout, "\n\tShowcase :: ");
@@ -227,6 +246,7 @@ bool User::throw_ball(const Ball *ball, Pokemon *pokemon)
 
         if (success == 69)
         {
+            m_xp += 1000;
             return true;
         }
         return false;
@@ -237,6 +257,7 @@ bool User::throw_ball(const Ball *ball, Pokemon *pokemon)
 
         if (success >= 2)
         {
+            m_xp += 500;
             return true;
         }
 
