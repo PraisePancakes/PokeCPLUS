@@ -4,17 +4,20 @@
 #include "../utils/validators/validateUsername.cpp"
 #include "../includes/Ball.h"
 #include "../includes/data/Data.h"
+#include "../includes/Envionment.h"
 #include <conio.h>
+
 #define ANY_KEY() (GUI::style_cout(GUI::LIGHTMAGENTA, std::cout, "press any key to continue...\n"), getch())
 
-// what to do today? create an xp and points system
+// what to do today? create an achievement system, add music?
 int main(int argc, char *argv[])
 {
+
     HANDLE hc = GetStdHandle(STD_OUTPUT_HANDLE);
+    ENVIRONMENT::play_music();
     system("cls");
     GUI::display_tutorial();
     ANY_KEY();
-    getch();
     // get user
     // first save only
     GUI::style_cout(GUI::GREEN, std::cout, "Enter your username : \n");
@@ -66,12 +69,10 @@ int main(int argc, char *argv[])
     } while (starter_option < 1 || starter_option > 4);
 
     ANY_KEY();
-    getch();
     system("cls");
     GUI::style_cout(GUI::CYAN, std::cout, ":: HERE ARE YOUR STARTING BALLS ::\n");
     user.display_ball_inventory();
     ANY_KEY();
-    getch();
     system("cls");
 
     // game flow
@@ -182,16 +183,20 @@ int main(int argc, char *argv[])
             GUI::style_cout(GUI::YELLOW, std::cout, "=-=-= YOUR POKEDEX =-=-=\n");
             user.display_pokedex();
             ANY_KEY();
-            getch();
             break;
         case GUI::MENU_SHOWCASE_POKEMON:
             GUI::style_cout(GUI::YELLOW, std::cout, "=-=-= CHOOSE A SHOWCASE =-=-=\n");
             user.set_showcase_pokemon();
-            getch();
+            ANY_KEY();
             break;
         case GUI::MENU_VIEW_POKEBALLS:
             user.display_ball_inventory();
-            getch();
+            ANY_KEY();
+            break;
+        case GUI::MENU_VIEW_ACHIEVEMENTS:
+            GUI::style_cout(GUI::YELLOW, std::cout, "=-=-= YOUR ACHIEVEMENTS =-=-=\n");
+            user.display_achievements();
+            ANY_KEY();
             break;
         case GUI::MENU_EXIT:
             GUI::style_cout(GUI::RED, std::cout, "PROCESS TERMINATED\n");

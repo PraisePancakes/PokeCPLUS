@@ -8,6 +8,8 @@ User::User(std::string username, unsigned long int balls_thrown, unsigned long i
     : m_balls_thrown(balls_thrown), m_username(username), m_xp(xp), m_level(level)
 {
     m_init_ball_inventory();
+    Achievement *new_achievement = m_create_achievement("THE BEGINNING", "start your pokemon journey");
+    m_push_achievement(new_achievement);
     m_showcase = nullptr;
 };
 
@@ -27,6 +29,35 @@ void User::m_filter_level()
         break;
     case 1001 ... 2000:
         m_level = 2;
+        break;
+    case 2001 ... 4000:
+        m_level = 3;
+        break;
+    case 4001 ... 8000:
+        m_level = 4;
+        break;
+    case 8001 ... 16000:
+    {
+        m_level = 5;
+        Achievement *new_achievement = m_create_achievement("GLASS HALF FULL", "reach level 5");
+        m_push_achievement(new_achievement);
+    }
+
+    break;
+    case 16001 ... 32000:
+        m_level = 6;
+        break;
+    case 32001 ... 64000:
+        m_level = 7;
+        break;
+    case 64001 ... 128000:
+        m_level = 8;
+        break;
+    case 128001 ... 256000:
+        m_level = 9;
+        break;
+    case 256001 ... 512000:
+        m_level = 10;
         break;
     }
 
@@ -77,6 +108,23 @@ void User::push_to_ball_inventory(Ball *new_ball)
 
     m_ball_inventory.push_back(std::move(new_item));
 };
+void User::display_achievements() const
+{
+    for (int i = 0; i < m_achievements.size(); i++)
+    {
+        GUI::style_cout(GUI::MAGENTA, std::cout, std::to_string(i) + " " + m_achievements[i].title + "\n");
+    }
+};
+Achievement *User::m_create_achievement(std::string title, std::string desc)
+{
+    Achievement *new_achievement = new Achievement{title, desc};
+    return new_achievement;
+}
+
+void User::m_push_achievement(Achievement *achievement)
+{
+    m_achievements.push_back(*achievement);
+}
 
 void User::m_init_ball_inventory()
 {

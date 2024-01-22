@@ -14,12 +14,20 @@ typedef struct BallItem
     int count;
 } BallItem;
 
+typedef struct Achievement
+{
+    std::string title;
+    std::string desc;
+
+} Achievement;
+
 class User
 {
 private:
     std::string m_username;
     std::vector<Pokemon> m_pokedex;
     std::vector<BallItem> m_ball_inventory;
+    std::vector<Achievement> m_achievements;
     Pokemon *m_showcase;
     unsigned long int m_balls_thrown;
     unsigned long int m_xp;     // 100 xp for level 1, 200 xp for level 2 -> double each time
@@ -30,6 +38,8 @@ private:
     void m_remove_ball(const Ball *ball);
     void m_filter_pokeballs();
     void m_filter_level();
+    Achievement *m_create_achievement(std::string title, std::string desc);
+    void m_push_achievement(Achievement *achievement);
 
 public:
     User(std::string username, unsigned long int balls_thrown, unsigned long int xp, unsigned long int level); // arg list : username, pokedex, pokeballs
@@ -37,6 +47,7 @@ public:
     bool throw_ball(const Ball *ball, Pokemon *pokemon);
     void push_to_pokedex(Pokemon *new_pokemon);
     void push_to_ball_inventory(Ball *new_ball);
+    void display_achievements() const;
     void display_pokedex() const;
     void display_ball_inventory();
     Pokemon *get_starter_pokemon(unsigned short int selection_choice) const;
