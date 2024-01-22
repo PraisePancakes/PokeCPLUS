@@ -5,7 +5,7 @@
 #include "../includes/Ball.h"
 #include "../includes/data/Data.h"
 #include <conio.h>
-#define ANY_KEY() (GUI::style_cout(GUI::LIGHTMAGENTA, std::cout, "press any key to continue...\n"))
+#define ANY_KEY() (GUI::style_cout(GUI::LIGHTMAGENTA, std::cout, "press any key to continue...\n"), getch())
 
 // what to do today? create an xp and points system
 int main(int argc, char *argv[])
@@ -104,8 +104,14 @@ int main(int argc, char *argv[])
                 {
                     // chose ball
                     GUI::style_cout(GUI::MAGENTA, std::cout, "--- CHOOSE A BALL ---\n");
-                    Ball new_ball = user.choose_ball();
-                    bool successful_catch = user.throw_ball(&new_ball, random_pokemon);
+                    std::experimental::optional<Ball> new_ball = user.choose_ball();
+                    if (!new_ball)
+                    {
+                        ANY_KEY();
+                        break;
+                    }
+
+                    bool successful_catch = user.throw_ball(&(*new_ball), random_pokemon);
 
                     if (successful_catch)
                     {
@@ -137,17 +143,19 @@ int main(int argc, char *argv[])
                         if (catch_option == GUI::RUN)
                         {
                             random_pokemon->display_fled();
+                            ANY_KEY();
                             break;
                         }
 
-                        if (user.get_ball_inventory_size() == 0)
+                        std::experimental::optional<Ball> new_ball = user.choose_ball();
+
+                        if (!new_ball)
                         {
-                            GUI::style_cout(GUI::RED, std::cout, " :: YOU RAN OUT OF POKEBALLS :: \n");
-                            random_pokemon->display_fled();
+                            ANY_KEY();
                             break;
                         }
-                        Ball new_ball = user.choose_ball();
-                        bool successful_catch = user.throw_ball(&new_ball, random_pokemon);
+
+                        bool successful_catch = user.throw_ball(&(*new_ball), random_pokemon);
 
                         if (successful_catch)
                         {

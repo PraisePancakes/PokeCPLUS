@@ -18,16 +18,23 @@ std::string User::get_username() const
 
 void User::m_filter_level()
 {
+    const unsigned short int level = m_level;
+
     switch (m_xp)
     {
-    case 1 ... 499:
-        m_level = 0;
-        m_xp = 0;
-        break;
-    case 500 ... 1000:
+    case 1 ... 1000:
         m_level = 1;
-        m_xp = 0;
         break;
+    case 1001 ... 2000:
+        m_level = 2;
+        break;
+    }
+
+    unsigned short int new_level = m_level;
+
+    if (new_level > level)
+    {
+        GUI::style_cout(GUI::GREEN, std::cout, ":: YOU LEVELED UP! == LEVEL " + std::to_string(new_level) + " ::\n");
     }
 }
 
@@ -231,22 +238,25 @@ bool User::throw_ball(const Ball *ball, Pokemon *pokemon)
 
     m_balls_thrown += 1;
     m_remove_ball(ball);
+    m_xp += 50;
 
     if (ball->get_ball_type() == "Masterball")
     {
+        m_xp += 300;
+        m_filter_level();
         return true;
     }
 
     if (pokemon->get_is_legendary())
     {
         catch_chance_modifiable_ciel = 200;
-
         success = (rand() % catch_chance_modifiable_ciel - CATCH_CHANCE_MIN) + CATCH_CHANCE_MIN;
         success += ball->get_ball_mult();
 
         if (success == 69)
         {
             m_xp += 1000;
+            m_filter_level();
             return true;
         }
         return false;
@@ -258,6 +268,7 @@ bool User::throw_ball(const Ball *ball, Pokemon *pokemon)
         if (success >= 2)
         {
             m_xp += 500;
+            m_filter_level();
             return true;
         }
 
@@ -265,9 +276,14 @@ bool User::throw_ball(const Ball *ball, Pokemon *pokemon)
     }
 };
 
-Ball User::choose_ball()
+std::experimental::optional<Ball> User::choose_ball()
 {
+    if (get_ball_inventory_size() - 1 == 0)
+    {
+        GUI::style_cout(GUI::RED, std::cout, " :: YOU RAN OUT OF POKEBALLS :: \n");
 
+        return std::experimental::nullopt;
+    }
     int option = 0;
     display_ball_inventory();
     std::cin >> option;

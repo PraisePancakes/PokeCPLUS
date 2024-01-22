@@ -22,8 +22,8 @@ private:
     std::vector<BallItem> m_ball_inventory;
     Pokemon *m_showcase;
     unsigned long int m_balls_thrown;
-    unsigned long int m_xp;    // 100 xp for level 1, 200 xp for level 2 -> double each time
-    unsigned long int m_level; // max level 50
+    unsigned long int m_xp;     // 100 xp for level 1, 200 xp for level 2 -> double each time
+    unsigned short int m_level; // max level 50
 
 private:
     void m_init_ball_inventory();
@@ -46,7 +46,7 @@ public:
     unsigned long int get_balls_thrown() const;
     int get_ball_inventory_size() const;
     void walk() const;
-    Ball choose_ball();
+    std::experimental::optional<Ball> choose_ball();
     std::string get_username() const;
     // ~User(); future deconstructor
 };
