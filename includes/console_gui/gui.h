@@ -2,8 +2,11 @@
 #define GUI_H
 #include <iostream>
 #include <windows.h>
+#include <conio.h>
+#define ANY_KEY() (GUI::style_cout(GUI::LIGHTMAGENTA, std::cout, "press any key to continue...\n"), getch())
 namespace GUI
 {
+
     enum Colors
     {
         BLACK = 0,
@@ -46,6 +49,7 @@ namespace GUI
     void display_tutorial();
     void welcome_user(std::string username);
     void style_cout(Colors color, std::ostream &text_stream, const std::string &text);
+
     Colors intToColor(int colorCode);
     unsigned short int get_catch_option();
 

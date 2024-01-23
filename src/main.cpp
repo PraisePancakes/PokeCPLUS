@@ -5,11 +5,8 @@
 #include "../includes/Ball.h"
 #include "../includes/data/Data.h"
 #include "../includes/Envionment.h"
-#include <conio.h>
 
-#define ANY_KEY() (GUI::style_cout(GUI::LIGHTMAGENTA, std::cout, "press any key to continue...\n"), getch())
-
-// what to do today? create an achievement system, add music?
+// what to do today? add music?
 int main(int argc, char *argv[])
 {
 
@@ -119,7 +116,7 @@ int main(int argc, char *argv[])
                         GUI::style_cout(GUI::GREEN, std::cout, " :: CATCH SUCCESSFUL ::\n");
                         random_pokemon->display_pokemon();
                         user.push_to_pokedex(random_pokemon);
-                        getch();
+                        ANY_KEY();
                         break;
                     }
 
@@ -168,7 +165,7 @@ int main(int argc, char *argv[])
                         current_throws++;
                     }
 
-                    getch();
+                    ANY_KEY();
                 }
                 else if (catch_option == GUI::RUN)
                 {
