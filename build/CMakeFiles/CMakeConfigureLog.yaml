@@ -305,3 +305,169 @@ events:
       
       
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/aryas/Downloads/cmake-3.28.0-rc5-windows-x86_64/cmake-3.28.0-rc5-windows-x86_64/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Users/aryas/Downloads/cmake-3.28.0-rc5-windows-x86_64/cmake-3.28.0-rc5-windows-x86_64/share/cmake-3.28/Modules/CheckCXXSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "C:/Users/aryas/Downloads/cmake-3.28.0-rc5-windows-x86_64/cmake-3.28.0-rc5-windows-x86_64/share/cmake-3.28/Modules/FindThreads.cmake:99 (CHECK_CXX_SOURCE_COMPILES)"
+      - "C:/Users/aryas/Downloads/cmake-3.28.0-rc5-windows-x86_64/cmake-3.28.0-rc5-windows-x86_64/share/cmake-3.28/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "C:/Users/aryas/Downloads/cmake-3.28.0-rc5-windows-x86_64/cmake-3.28.0-rc5-windows-x86_64/share/cmake-3.28/Modules/FindBoost.cmake:2143 (find_package)"
+      - "CMakeLists.txt:9 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/CMakeScratch/TryCompile-t4h96u"
+      binary: "C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/CMakeScratch/TryCompile-t4h96u"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/CMakeScratch/TryCompile-t4h96u'
+        
+        Run Build Command(s): C:/Users/aryas/Downloads/cmake-3.28.0-rc5-windows-x86_64/cmake-3.28.0-rc5-windows-x86_64/bin/cmake.exe -E env VERBOSE=1 C:/MinGW/bin/mingw32-make.exe -f Makefile cmTC_a413e/fast
+        C:/MinGW/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_a413e.dir\\build.make CMakeFiles/cmTC_a413e.dir/build
+        mingw32-make.exe[1]: Entering directory 'C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/CMakeScratch/TryCompile-t4h96u'
+        Building CXX object CMakeFiles/cmTC_a413e.dir/src.cxx.obj
+        C:\\MinGW\\bin\\g++.exe -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles\\cmTC_a413e.dir\\src.cxx.obj -c C:\\Users\\aryas\\OneDrive\\Desktop\\PokeCPLUS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t4h96u\\src.cxx
+        C:\\Users\\aryas\\OneDrive\\Desktop\\PokeCPLUS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t4h96u\\src.cxx:1:21: fatal error: pthread.h: No such file or directory
+         #include <pthread.h>
+                             ^
+        compilation terminated.
+        CMakeFiles\\cmTC_a413e.dir\\build.make:76: recipe for target 'CMakeFiles/cmTC_a413e.dir/src.cxx.obj' failed
+        mingw32-make.exe[1]: *** [CMakeFiles/cmTC_a413e.dir/src.cxx.obj] Error 1
+        mingw32-make.exe[1]: Leaving directory 'C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/CMakeScratch/TryCompile-t4h96u'
+        Makefile:126: recipe for target 'cmTC_a413e/fast' failed
+        mingw32-make.exe: *** [cmTC_a413e/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/aryas/Downloads/cmake-3.28.0-rc5-windows-x86_64/cmake-3.28.0-rc5-windows-x86_64/share/cmake-3.28/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "C:/Users/aryas/Downloads/cmake-3.28.0-rc5-windows-x86_64/cmake-3.28.0-rc5-windows-x86_64/share/cmake-3.28/Modules/FindThreads.cmake:112 (CHECK_LIBRARY_EXISTS)"
+      - "C:/Users/aryas/Downloads/cmake-3.28.0-rc5-windows-x86_64/cmake-3.28.0-rc5-windows-x86_64/share/cmake-3.28/Modules/FindThreads.cmake:175 (_threads_check_lib)"
+      - "C:/Users/aryas/Downloads/cmake-3.28.0-rc5-windows-x86_64/cmake-3.28.0-rc5-windows-x86_64/share/cmake-3.28/Modules/FindBoost.cmake:2143 (find_package)"
+      - "CMakeLists.txt:9 (find_package)"
+    checks:
+      - "Looking for pthread_create in pthreads"
+    directories:
+      source: "C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/CMakeScratch/TryCompile-wv09yv"
+      binary: "C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/CMakeScratch/TryCompile-wv09yv"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_HAVE_PTHREADS_CREATE"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/CMakeScratch/TryCompile-wv09yv'
+        
+        Run Build Command(s): C:/Users/aryas/Downloads/cmake-3.28.0-rc5-windows-x86_64/cmake-3.28.0-rc5-windows-x86_64/bin/cmake.exe -E env VERBOSE=1 C:/MinGW/bin/mingw32-make.exe -f Makefile cmTC_1cb1d/fast
+        C:/MinGW/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_1cb1d.dir\\build.make CMakeFiles/cmTC_1cb1d.dir/build
+        mingw32-make.exe[1]: Entering directory 'C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/CMakeScratch/TryCompile-wv09yv'
+        Building CXX object CMakeFiles/cmTC_1cb1d.dir/CheckFunctionExists.cxx.obj
+        C:\\MinGW\\bin\\g++.exe   -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles\\cmTC_1cb1d.dir\\CheckFunctionExists.cxx.obj -c C:\\Users\\aryas\\OneDrive\\Desktop\\PokeCPLUS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wv09yv\\CheckFunctionExists.cxx
+        Linking CXX executable cmTC_1cb1d.exe
+        C:\\Users\\aryas\\Downloads\\cmake-3.28.0-rc5-windows-x86_64\\cmake-3.28.0-rc5-windows-x86_64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_1cb1d.dir\\link.txt --verbose=1
+        C:\\Users\\aryas\\Downloads\\cmake-3.28.0-rc5-windows-x86_64\\cmake-3.28.0-rc5-windows-x86_64\\bin\\cmake.exe -E rm -f CMakeFiles\\cmTC_1cb1d.dir/objects.a
+        C:\\MinGW\\bin\\ar.exe qc CMakeFiles\\cmTC_1cb1d.dir/objects.a @CMakeFiles\\cmTC_1cb1d.dir\\objects1.rsp
+        C:\\MinGW\\bin\\g++.exe  -DCHECK_FUNCTION_EXISTS=pthread_create -Wl,--whole-archive CMakeFiles\\cmTC_1cb1d.dir/objects.a -Wl,--no-whole-archive -o cmTC_1cb1d.exe -Wl,--out-implib,libcmTC_1cb1d.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\\cmTC_1cb1d.dir\\linkLibs.rsp
+        c:/mingw/bin/../lib/gcc/mingw32/6.3.0/../../../../mingw32/bin/ld.exe: cannot find -lpthreads
+        collect2.exe: error: ld returned 1 exit status
+        CMakeFiles\\cmTC_1cb1d.dir\\build.make:99: recipe for target 'cmTC_1cb1d.exe' failed
+        mingw32-make.exe[1]: *** [cmTC_1cb1d.exe] Error 1
+        mingw32-make.exe[1]: Leaving directory 'C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/CMakeScratch/TryCompile-wv09yv'
+        Makefile:126: recipe for target 'cmTC_1cb1d/fast' failed
+        mingw32-make.exe: *** [cmTC_1cb1d/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/aryas/Downloads/cmake-3.28.0-rc5-windows-x86_64/cmake-3.28.0-rc5-windows-x86_64/share/cmake-3.28/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "C:/Users/aryas/Downloads/cmake-3.28.0-rc5-windows-x86_64/cmake-3.28.0-rc5-windows-x86_64/share/cmake-3.28/Modules/FindThreads.cmake:112 (CHECK_LIBRARY_EXISTS)"
+      - "C:/Users/aryas/Downloads/cmake-3.28.0-rc5-windows-x86_64/cmake-3.28.0-rc5-windows-x86_64/share/cmake-3.28/Modules/FindThreads.cmake:176 (_threads_check_lib)"
+      - "C:/Users/aryas/Downloads/cmake-3.28.0-rc5-windows-x86_64/cmake-3.28.0-rc5-windows-x86_64/share/cmake-3.28/Modules/FindBoost.cmake:2143 (find_package)"
+      - "CMakeLists.txt:9 (find_package)"
+    checks:
+      - "Looking for pthread_create in pthread"
+    directories:
+      source: "C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/CMakeScratch/TryCompile-j40dxt"
+      binary: "C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/CMakeScratch/TryCompile-j40dxt"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_HAVE_PTHREAD_CREATE"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/CMakeScratch/TryCompile-j40dxt'
+        
+        Run Build Command(s): C:/Users/aryas/Downloads/cmake-3.28.0-rc5-windows-x86_64/cmake-3.28.0-rc5-windows-x86_64/bin/cmake.exe -E env VERBOSE=1 C:/MinGW/bin/mingw32-make.exe -f Makefile cmTC_49914/fast
+        C:/MinGW/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_49914.dir\\build.make CMakeFiles/cmTC_49914.dir/build
+        mingw32-make.exe[1]: Entering directory 'C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/CMakeScratch/TryCompile-j40dxt'
+        Building CXX object CMakeFiles/cmTC_49914.dir/CheckFunctionExists.cxx.obj
+        C:\\MinGW\\bin\\g++.exe   -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles\\cmTC_49914.dir\\CheckFunctionExists.cxx.obj -c C:\\Users\\aryas\\OneDrive\\Desktop\\PokeCPLUS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-j40dxt\\CheckFunctionExists.cxx
+        Linking CXX executable cmTC_49914.exe
+        C:\\Users\\aryas\\Downloads\\cmake-3.28.0-rc5-windows-x86_64\\cmake-3.28.0-rc5-windows-x86_64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_49914.dir\\link.txt --verbose=1
+        C:\\Users\\aryas\\Downloads\\cmake-3.28.0-rc5-windows-x86_64\\cmake-3.28.0-rc5-windows-x86_64\\bin\\cmake.exe -E rm -f CMakeFiles\\cmTC_49914.dir/objects.a
+        C:\\MinGW\\bin\\ar.exe qc CMakeFiles\\cmTC_49914.dir/objects.a @CMakeFiles\\cmTC_49914.dir\\objects1.rsp
+        C:\\MinGW\\bin\\g++.exe  -DCHECK_FUNCTION_EXISTS=pthread_create -Wl,--whole-archive CMakeFiles\\cmTC_49914.dir/objects.a -Wl,--no-whole-archive -o cmTC_49914.exe -Wl,--out-implib,libcmTC_49914.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\\cmTC_49914.dir\\linkLibs.rsp
+        c:/mingw/bin/../lib/gcc/mingw32/6.3.0/../../../../mingw32/bin/ld.exe: cannot find -lpthread
+        collect2.exe: error: ld returned 1 exit status
+        CMakeFiles\\cmTC_49914.dir\\build.make:99: recipe for target 'cmTC_49914.exe' failed
+        mingw32-make.exe[1]: *** [cmTC_49914.exe] Error 1
+        mingw32-make.exe[1]: Leaving directory 'C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/CMakeScratch/TryCompile-j40dxt'
+        Makefile:126: recipe for target 'cmTC_49914/fast' failed
+        mingw32-make.exe: *** [cmTC_49914/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/aryas/Downloads/cmake-3.28.0-rc5-windows-x86_64/cmake-3.28.0-rc5-windows-x86_64/share/cmake-3.28/Modules/FindThreads.cmake:136 (try_compile)"
+      - "C:/Users/aryas/Downloads/cmake-3.28.0-rc5-windows-x86_64/cmake-3.28.0-rc5-windows-x86_64/share/cmake-3.28/Modules/FindThreads.cmake:179 (_threads_check_flag_pthread)"
+      - "C:/Users/aryas/Downloads/cmake-3.28.0-rc5-windows-x86_64/cmake-3.28.0-rc5-windows-x86_64/share/cmake-3.28/Modules/FindBoost.cmake:2143 (find_package)"
+      - "CMakeLists.txt:9 (find_package)"
+    checks:
+      - "Check if compiler accepts -pthread"
+    directories:
+      source: "C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/CMakeScratch/TryCompile-54aj1k"
+      binary: "C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/CMakeScratch/TryCompile-54aj1k"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "THREADS_HAVE_PTHREAD_ARG"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/CMakeScratch/TryCompile-54aj1k'
+        
+        Run Build Command(s): C:/Users/aryas/Downloads/cmake-3.28.0-rc5-windows-x86_64/cmake-3.28.0-rc5-windows-x86_64/bin/cmake.exe -E env VERBOSE=1 C:/MinGW/bin/mingw32-make.exe -f Makefile cmTC_f82c0/fast
+        C:/MinGW/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_f82c0.dir\\build.make CMakeFiles/cmTC_f82c0.dir/build
+        mingw32-make.exe[1]: Entering directory 'C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/CMakeScratch/TryCompile-54aj1k'
+        Building CXX object CMakeFiles/cmTC_f82c0.dir/CheckForPthreads.cxx.obj
+        C:\\MinGW\\bin\\g++.exe    -o CMakeFiles\\cmTC_f82c0.dir\\CheckForPthreads.cxx.obj -c C:\\Users\\aryas\\OneDrive\\Desktop\\PokeCPLUS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-54aj1k\\CheckForPthreads.cxx
+        C:\\Users\\aryas\\OneDrive\\Desktop\\PokeCPLUS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-54aj1k\\CheckForPthreads.cxx:1:21: fatal error: pthread.h: No such file or directory
+         #include <pthread.h>
+                             ^
+        compilation terminated.
+        CMakeFiles\\cmTC_f82c0.dir\\build.make:76: recipe for target 'CMakeFiles/cmTC_f82c0.dir/CheckForPthreads.cxx.obj' failed
+        mingw32-make.exe[1]: *** [CMakeFiles/cmTC_f82c0.dir/CheckForPthreads.cxx.obj] Error 1
+        mingw32-make.exe[1]: Leaving directory 'C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/CMakeScratch/TryCompile-54aj1k'
+        Makefile:126: recipe for target 'cmTC_f82c0/fast' failed
+        mingw32-make.exe: *** [cmTC_f82c0/fast] Error 2
+        
+      exitCode: 2
+...

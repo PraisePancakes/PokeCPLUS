@@ -1,4 +1,7 @@
 file(REMOVE_RECURSE
+  "C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/exe/poke.exe"
+  "C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/exe/poke.exe.manifest"
+  "C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/exe/poke.pdb"
   "CMakeFiles/poke.dir/src/Ball.cpp.obj"
   "CMakeFiles/poke.dir/src/Ball.cpp.obj.d"
   "CMakeFiles/poke.dir/src/Environment.cpp.obj"
@@ -13,9 +16,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/poke.dir/src/main.cpp.obj.d"
   "CMakeFiles/poke.dir/src/pokeData/Data.cpp.obj"
   "CMakeFiles/poke.dir/src/pokeData/Data.cpp.obj.d"
-  "exe/poke.exe"
-  "exe/poke.exe.manifest"
-  "exe/poke.pdb"
   "libpoke.dll.a"
 )
 

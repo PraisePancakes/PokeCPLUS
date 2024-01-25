@@ -6,7 +6,7 @@
 #include "../includes/data/Data.h"
 #include "../includes/Envionment.h"
 
-// what to do today? add music?
+// what to do today? create save for player convert to MFC
 int main(int argc, char *argv[])
 {
 

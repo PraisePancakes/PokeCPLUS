@@ -112,7 +112,8 @@ void User::display_achievements() const
 {
     for (int i = 0; i < m_achievements.size(); i++)
     {
-        GUI::style_cout(GUI::MAGENTA, std::cout, std::to_string(i) + " " + m_achievements[i].title + "\n");
+        GUI::style_cout(GUI::BLUE, std::cout, std::to_string(i) + " " + m_achievements[i].title);
+        GUI::style_cout(GUI::GREEN, std::cout, " - " + m_achievements[i].desc + "\n");
     }
 };
 Achievement *User::m_create_achievement(std::string title, std::string desc)
