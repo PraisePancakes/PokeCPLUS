@@ -1,3 +1,0 @@
-C:\Users\aryas\Downloads\cmake-3.28.0-rc5-windows-x86_64\cmake-3.28.0-rc5-windows-x86_64\bin\cmake.exe -E rm -f CMakeFiles\poke.dir/objects.a
-C:\MinGW\bin\ar.exe qc CMakeFiles\poke.dir/objects.a @CMakeFiles\poke.dir\objects1.rsp
-C:\MinGW\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\poke.dir/objects.a -Wl,--no-whole-archive -o C:\Users\aryas\OneDrive\Desktop\PokeCPLUS\exe\poke.exe -Wl,--out-implib,libpoke.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\poke.dir\linkLibs.rsp

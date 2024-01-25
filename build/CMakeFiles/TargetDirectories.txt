@@ -1,3 +1,0 @@
-C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/poke.dir
-C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/edit_cache.dir
-C:/Users/aryas/OneDrive/Desktop/PokeCPLUS/build/CMakeFiles/rebuild_cache.dir
