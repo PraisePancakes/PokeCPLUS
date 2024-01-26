@@ -2,7 +2,6 @@
 #define BALL_H
 #include <iostream>
 
-
 class Ball
 {
 

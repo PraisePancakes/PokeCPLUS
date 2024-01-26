@@ -5,16 +5,17 @@
 #include "../includes/Ball.h"
 #include "../includes/data/Data.h"
 #include "../includes/Envionment.h"
-#include <boost/algorithm/algorithm.hpp> //@test boost import successful
+
 // what to do today? create save for player convert to MFC
 int main(int argc, char *argv[])
 {
     HANDLE hc = GetStdHandle(STD_OUTPUT_HANDLE);
-    ENVIRONMENT::play_music();
+
+    ENVIRONMENT::play_music(); // future addition
     system("cls");
     GUI::display_tutorial();
     ANY_KEY();
-    // get user
+
     // first save only
     GUI::style_cout(GUI::GREEN, std::cout, "Enter your username : \n");
     std::string username;
@@ -101,7 +102,7 @@ int main(int argc, char *argv[])
                 {
                     // chose ball
                     GUI::style_cout(GUI::MAGENTA, std::cout, "--- CHOOSE A BALL ---\n");
-                    std::experimental::optional<Ball> new_ball = user.choose_ball();
+                    std::optional<Ball> new_ball = user.choose_ball();
                     if (!new_ball)
                     {
                         ANY_KEY();
@@ -144,7 +145,7 @@ int main(int argc, char *argv[])
                             break;
                         }
 
-                        std::experimental::optional<Ball> new_ball = user.choose_ball();
+                        std::optional<Ball> new_ball = user.choose_ball();
 
                         if (!new_ball)
                         {
@@ -202,5 +203,6 @@ int main(int argc, char *argv[])
             GUI::style_cout(GUI::RED, std::cout, "[ERROR] INVALID MENU OPTION\n");
         }
     }
+
     return 0;
 }

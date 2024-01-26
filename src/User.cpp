@@ -196,13 +196,13 @@ Pokemon *User::get_starter_pokemon(unsigned short int selection_choice) const
     switch (selection_choice)
     {
     case 1:
-        starter_pokemon = new Pokemon("Pikachu", "Electric", std::experimental::nullopt, false);
+        starter_pokemon = new Pokemon("Pikachu", "Electric", std::nullopt, false);
         break;
     case 2:
-        starter_pokemon = new Pokemon("Squirtle", "Water", std::experimental::nullopt, false);
+        starter_pokemon = new Pokemon("Squirtle", "Water", std::nullopt, false);
         break;
     case 3:
-        starter_pokemon = new Pokemon("Charmander", "Fire", std::experimental::nullopt, false);
+        starter_pokemon = new Pokemon("Charmander", "Fire", std::nullopt, false);
         break;
     case 4:
         starter_pokemon = new Pokemon("Bulbasaur", "Grass", "Poison", false);
@@ -325,13 +325,13 @@ bool User::throw_ball(const Ball *ball, Pokemon *pokemon)
     }
 };
 
-std::experimental::optional<Ball> User::choose_ball()
+std::optional<Ball> User::choose_ball()
 {
     if (get_ball_inventory_size() - 1 == 0)
     {
         GUI::style_cout(GUI::RED, std::cout, " :: YOU RAN OUT OF POKEBALLS :: \n");
 
-        return std::experimental::nullopt;
+        return std::nullopt;
     }
     int option = 0;
     display_ball_inventory();

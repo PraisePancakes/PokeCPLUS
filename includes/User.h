@@ -7,6 +7,7 @@
 #include <vector>
 #include "Ball.h"
 #include <memory>
+#include <optional>
 
 typedef struct BallItem
 {
@@ -57,7 +58,7 @@ public:
     unsigned long int get_balls_thrown() const;
     int get_ball_inventory_size() const;
     void walk() const;
-    std::experimental::optional<Ball> choose_ball();
+    std::optional<Ball> choose_ball();
     std::string get_username() const;
     // ~User(); future deconstructor
 };
