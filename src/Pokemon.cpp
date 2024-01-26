@@ -1,7 +1,7 @@
 #include "../includes/Pokemon.h"
 #include <time.h>
 
-Pokemon::Pokemon(std::string name, std::string primary_type, std::experimental::optional<std::string> secondary_type, bool is_legendary)
+Pokemon::Pokemon(std::string name, std::string primary_type, std::optional<std::string> secondary_type, bool is_legendary)
     : m_pokemon_name(name), m_is_legendary(is_legendary), m_type(new PokeType)
 {
     m_set_pokemon_type(primary_type, secondary_type);
@@ -47,7 +47,7 @@ GUI::Colors Pokemon::m_get_primary_type_color(std::string primary_type) const
     }
 }
 
-GUI::Colors Pokemon::m_get_secondary_type_color(std::experimental::optional<std::string> secondary_type) const
+GUI::Colors Pokemon::m_get_secondary_type_color(std::optional<std::string> secondary_type) const
 {
     if (secondary_type.value().compare("Fire") == 0)
     {
@@ -87,7 +87,7 @@ GUI::Colors Pokemon::m_get_secondary_type_color(std::experimental::optional<std:
     }
 }
 
-void Pokemon::m_set_pokemon_type(std::string primary_type, std::experimental::optional<std::string> secondary_type)
+void Pokemon::m_set_pokemon_type(std::string primary_type, std::optional<std::string> secondary_type)
 {
 
     if (secondary_type)
@@ -97,7 +97,7 @@ void Pokemon::m_set_pokemon_type(std::string primary_type, std::experimental::op
     }
     else
     {
-        m_type->pokemon_secondary_type_name = std::experimental::nullopt;
+        m_type->pokemon_secondary_type_name = std::nullopt;
     }
 
     m_type->pokemon_primary_type_name = primary_type;
