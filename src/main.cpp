@@ -5,9 +5,10 @@
 #include "../includes/Ball.h"
 #include "../includes/data/Data.h"
 #include "../includes/Envionment.h"
-// #include <boost/archive/text_oarchive.hpp>
+#include <fstream>
+#include <cereal/archives/json.hpp>
 
-// what to do today? create save for player convert to MFC
+// what to do today? serialize user obj
 int main(int argc, char *argv[])
 {
     HANDLE hc = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -198,7 +199,11 @@ int main(int argc, char *argv[])
             break;
         case GUI::MENU_EXIT:
             GUI::style_cout(GUI::RED, std::cout, "PROCESS TERMINATED\n");
-
+            {
+                std::ofstream os("user_data.json");
+                cereal::JSONOutputArchive archive(os);
+                user.serialize(archive);
+            }
             break;
         default:
             GUI::style_cout(GUI::RED, std::cout, "[ERROR] INVALID MENU OPTION\n");

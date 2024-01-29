@@ -225,7 +225,7 @@ void User::set_showcase_pokemon()
         std::cin >> option;
     }
 
-    m_showcase = &(m_pokedex[option]);
+    m_showcase = std::make_unique<Pokemon>(std::move(m_pokedex[option]));
 };
 
 void User::display_showcase_pokemon() const
