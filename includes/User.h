@@ -9,6 +9,7 @@
 #include <memory>
 #include <optional>
 #include <cereal/archives/json.hpp>
+#include <cereal/types/vector.hpp>
 
 typedef struct BallItem
 {
@@ -52,7 +53,8 @@ public:
            cereal::make_nvp("balls_thrown", m_balls_thrown),
            cereal::make_nvp("xp", m_xp),
            cereal::make_nvp("level", m_level),
-           cereal::make_nvp("showcase", m_showcase));
+           cereal::make_nvp("showcase", m_showcase),
+           cereal::make_nvp("pokedex", m_pokedex));
     }
     bool throw_ball(const Ball *ball, Pokemon *pokemon);
     void push_to_pokedex(Pokemon *new_pokemon);
