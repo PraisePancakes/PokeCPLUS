@@ -28,7 +28,6 @@ class User
 private:
     std::string m_username;
     std::vector<Pokemon> m_pokedex;
-
     std::vector<BallItem> m_ball_inventory;
     std::vector<Achievement> m_achievements;
     std::unique_ptr<Pokemon> m_showcase;
@@ -52,7 +51,8 @@ public:
         ar(cereal::make_nvp("username", m_username),
            cereal::make_nvp("balls_thrown", m_balls_thrown),
            cereal::make_nvp("xp", m_xp),
-           cereal::make_nvp("level", m_level));
+           cereal::make_nvp("level", m_level),
+           cereal::make_nvp("showcase", m_showcase));
     }
     bool throw_ball(const Ball *ball, Pokemon *pokemon);
     void push_to_pokedex(Pokemon *new_pokemon);

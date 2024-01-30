@@ -200,7 +200,7 @@ int main(int argc, char *argv[])
         case GUI::MENU_EXIT:
             GUI::style_cout(GUI::RED, std::cout, "PROCESS TERMINATED\n");
             {
-                std::ofstream os("user_data.json");
+                std::ofstream os("save/user_data.json");
                 cereal::JSONOutputArchive archive(os);
                 user.serialize(archive);
             }

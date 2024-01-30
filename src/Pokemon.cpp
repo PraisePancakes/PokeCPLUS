@@ -2,10 +2,18 @@
 #include <time.h>
 
 Pokemon::Pokemon(std::string name, std::string primary_type, std::optional<std::string> secondary_type, bool is_legendary)
-    : m_pokemon_name(name), m_is_legendary(is_legendary), m_type(new PokeType)
+    : m_pokemon_name(name), m_is_legendary(is_legendary), m_type(std::make_unique<PokeType>())
 {
     m_set_pokemon_type(primary_type, secondary_type);
 };
+
+Pokemon::Pokemon(const Pokemon &other)
+    : m_pokemon_name(other.m_pokemon_name),
+      m_type(other.m_type ? std::make_unique<PokeType>(*other.m_type) : nullptr),
+      m_is_shiny(other.m_is_shiny),
+      m_is_legendary(other.m_is_legendary)
+{
+}
 
 GUI::Colors Pokemon::m_get_primary_type_color(std::string primary_type) const
 {
@@ -105,10 +113,11 @@ void Pokemon::m_set_pokemon_type(std::string primary_type, std::optional<std::st
     m_type->primary_type_color = primary_type_color;
 }
 
-PokeType *Pokemon::get_pokemon_type() const
+std::unique_ptr<PokeType> Pokemon::get_pokemon_type() const
 {
-    return m_type;
-};
+    // Create a new unique_ptr by cloning the internal PokeType
+    return std::make_unique<PokeType>(*m_type);
+}
 
 std::string Pokemon::get_name() const
 {
@@ -140,7 +149,7 @@ bool Pokemon::get_is_legendary() const
 
 void Pokemon::display_pokemon_type() const
 {
-    PokeType *type = get_pokemon_type();
+    std::unique_ptr<PokeType> type = get_pokemon_type();
     auto secondary_type_name = type->pokemon_secondary_type_name;
     GUI::style_cout(GUI::CYAN, std::cout, " | Type :: ");
     GUI::style_cout(GUI::intToColor(type->primary_type_color), std::cout, type->pokemon_primary_type_name);
