@@ -15,12 +15,25 @@ typedef struct BallItem
 {
     std::unique_ptr<Ball> ball;
     int count;
+    template <class Archive>
+    void serialize(Archive &ar)
+    {
+        ar(cereal::make_nvp("ball", ball));
+        ar(cereal::make_nvp("count", count));
+    }
+
 } BallItem;
 
 typedef struct Achievement
 {
     std::string title;
     std::string desc;
+    template <class Archive>
+    void serialize(Archive &ar)
+    {
+        ar(cereal::make_nvp("title", title));
+        ar(cereal::make_nvp("desc", desc));
+    }
 
 } Achievement;
 
@@ -45,22 +58,25 @@ private:
     void m_push_achievement(Achievement *achievement);
 
 public:
-    User(std::string username, unsigned long int balls_thrown, unsigned long int xp, unsigned long int level); // arg list : username, pokedex, pokeballs
+    User(unsigned long int balls_thrown, unsigned long int xp, unsigned long int level); // arg list : username, pokedex, pokeballs
     template <class Archive>
     void serialize(Archive &ar)
     {
         ar(cereal::make_nvp("username", m_username),
+           cereal::make_nvp("pokedex", m_pokedex),
+           cereal::make_nvp("ball_inventory", m_ball_inventory),
+           cereal::make_nvp("achievements", m_achievements),
+           cereal::make_nvp("showcase", m_showcase),
            cereal::make_nvp("balls_thrown", m_balls_thrown),
            cereal::make_nvp("xp", m_xp),
-           cereal::make_nvp("level", m_level),
-           cereal::make_nvp("showcase", m_showcase),
-           cereal::make_nvp("pokedex", m_pokedex));
-    }
+           cereal::make_nvp("level", m_level));
+    };
     bool throw_ball(const Ball *ball, Pokemon *pokemon);
     void push_to_pokedex(Pokemon *new_pokemon);
     void push_to_ball_inventory(Ball *new_ball);
     void display_achievements() const;
     void display_pokedex() const;
+    void set_username(std::string username);
     void display_ball_inventory();
     Pokemon *get_starter_pokemon(unsigned short int selection_choice) const;
     void set_showcase_pokemon();

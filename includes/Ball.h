@@ -1,7 +1,8 @@
 #ifndef BALL_H
 #define BALL_H
 #include <iostream>
-
+#include <cereal/archives/json.hpp>
+#include <cereal/types/vector.hpp>
 class Ball
 {
 
@@ -12,6 +13,12 @@ private:
 
 public:
     Ball(std::string ball_type);
+    template <class Archive>
+    void serialize(Archive &ar)
+    {
+        ar(cereal::make_nvp("ball_type", m_ball_type));
+        ar(cereal::make_nvp("ball_modifier", m_ball_modifier));
+    }
     std::string get_ball_type() const;
     unsigned short int get_ball_mult() const;
 };

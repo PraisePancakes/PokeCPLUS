@@ -7,6 +7,8 @@ Pokemon::Pokemon(std::string name, std::string primary_type, std::optional<std::
     m_set_pokemon_type(primary_type, secondary_type);
 };
 
+Pokemon::Pokemon() : m_type(std::make_unique<PokeType>()) {}
+
 Pokemon::Pokemon(const Pokemon &other)
     : m_pokemon_name(other.m_pokemon_name),
       m_type(other.m_type ? std::make_unique<PokeType>(*other.m_type) : nullptr),

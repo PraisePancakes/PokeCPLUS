@@ -12,6 +12,8 @@
 int main(int argc, char *argv[])
 {
     HANDLE hc = GetStdHandle(STD_OUTPUT_HANDLE);
+    const std::string save_path = "save/user_data.json";
+    std::ifstream file(save_path.c_str());
 
     ENVIRONMENT::play_music(); // future addition
     system("cls");
@@ -19,17 +21,36 @@ int main(int argc, char *argv[])
     ANY_KEY();
 
     // first save only
-    GUI::style_cout(GUI::GREEN, std::cout, "Enter your username : \n");
-    std::string username;
-    getline(std::cin, username);
 
-    while (!validate_username(username))
+    User user(0, 0, 0); // first save only
+
+    if (file.is_open())
     {
-        GUI::style_cout(GUI::RED, std::cout, "Enter a different username : \n");
-        getline(std::cin, username);
+        std::cout << "File exists and can be opened.\n";
+        // {
+        //     cereal::JSONInputArchive archive(file);
+        //     archive(user);
+        // }
+        // fix deserializing this data, finish serializing the other members of the user class such as the ball inventory and achievements
+        file.close();
     }
+    else
+    {
+        GUI::style_cout(GUI::GREEN, std::cout, "Enter your username : \n");
+        std::string username;
+        getline(std::cin, username);
 
-    User user(username, 0, 0, 0); // first save only
+        // load user? first check if a save_file exists, if fopen() != NULL then de serialize the user object and use that as the load
+
+        while (!validate_username(username))
+        {
+            GUI::style_cout(GUI::RED, std::cout, "Enter a different username : \n");
+            getline(std::cin, username);
+        }
+
+        user.set_username(username);
+        std::cout << "File does not exist or cannot be opened.\n";
+    }
 
     system("cls");
     GUI::welcome_user(user.get_username()); // first || > saves

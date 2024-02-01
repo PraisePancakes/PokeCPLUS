@@ -4,8 +4,8 @@
 #include <time.h>
 #include <conio.h>
 
-User::User(std::string username, unsigned long int balls_thrown, unsigned long int xp, unsigned long int level)
-    : m_balls_thrown(balls_thrown), m_username(username), m_xp(xp), m_level(level)
+User::User(unsigned long int balls_thrown, unsigned long int xp, unsigned long int level)
+    : m_balls_thrown(balls_thrown), m_xp(xp), m_level(level)
 {
     m_init_ball_inventory();
     Achievement *new_achievement = m_create_achievement("THE BEGINNING", "start your pokemon journey");
@@ -16,6 +16,11 @@ User::User(std::string username, unsigned long int balls_thrown, unsigned long i
 std::string User::get_username() const
 {
     return m_username;
+}
+
+void User::set_username(std::string username)
+{
+    m_username = username;
 }
 
 void User::m_filter_level()

@@ -43,6 +43,7 @@ private:
 public:
     Pokemon(std::string name, std::string primary_type, std::optional<std::string> secondary_type, bool is_legendary);
     Pokemon(const Pokemon &other);
+    Pokemon();
     template <class Archive>
     void serialize(Archive &ar)
     {
