@@ -12,6 +12,7 @@ private:
     void m_set_ball_modifier(std::string ball_type);
 
 public:
+    Ball() = default;
     Ball(std::string ball_type);
     template <class Archive>
     void serialize(Archive &ar)

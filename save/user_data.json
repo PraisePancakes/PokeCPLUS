@@ -1,83 +1,85 @@
 {
-    "username": "Ary",
-    "pokedex": [
-        {
-            "pokemon_name": "Pikachu",
-            "is_shiny": false,
-            "is_legendary": false,
-            "type": {
-                "ptr_wrapper": {
-                    "valid": 1,
-                    "data": {
-                        "pokemon_primary_type_name": "Electric",
-                        "primary_type_color": 14
+    "value0": {
+        "username": "Ary",
+        "pokedex": [
+            {
+                "pokemon_name": "Squirtle",
+                "is_shiny": false,
+                "is_legendary": false,
+                "type": {
+                    "ptr_wrapper": {
+                        "valid": 1,
+                        "data": {
+                            "pokemon_primary_type_name": "Water",
+                            "primary_type_color": 9
+                        }
                     }
                 }
             }
-        }
-    ],
-    "ball_inventory": [
-        {
-            "ball": {
-                "ptr_wrapper": {
-                    "valid": 1,
-                    "data": {
-                        "ball_type": "Pokeball",
-                        "ball_modifier": 1
+        ],
+        "ball_inventory": [
+            {
+                "ball": {
+                    "ptr_wrapper": {
+                        "valid": 1,
+                        "data": {
+                            "ball_type": "Pokeball",
+                            "ball_modifier": 1
+                        }
                     }
-                }
+                },
+                "count": 10
             },
-            "count": 1
+            {
+                "ball": {
+                    "ptr_wrapper": {
+                        "valid": 1,
+                        "data": {
+                            "ball_type": "Greatball",
+                            "ball_modifier": 5
+                        }
+                    }
+                },
+                "count": 10
+            },
+            {
+                "ball": {
+                    "ptr_wrapper": {
+                        "valid": 1,
+                        "data": {
+                            "ball_type": "Ultraball",
+                            "ball_modifier": 7
+                        }
+                    }
+                },
+                "count": 10
+            },
+            {
+                "ball": {
+                    "ptr_wrapper": {
+                        "valid": 1,
+                        "data": {
+                            "ball_type": "Masterball",
+                            "ball_modifier": 10
+                        }
+                    }
+                },
+                "count": 10
+            }
+        ],
+        "achievements": [
+            {
+                "title": "THE BEGINNING",
+                "desc": "start your pokemon journey"
+            }
+        ],
+        "showcase": {
+            "ptr_wrapper": {
+                "valid": 0
+            }
         },
-        {
-            "ball": {
-                "ptr_wrapper": {
-                    "valid": 1,
-                    "data": {
-                        "ball_type": "Greatball",
-                        "ball_modifier": 5
-                    }
-                }
-            },
-            "count": 1
-        },
-        {
-            "ball": {
-                "ptr_wrapper": {
-                    "valid": 1,
-                    "data": {
-                        "ball_type": "Ultraball",
-                        "ball_modifier": 7
-                    }
-                }
-            },
-            "count": 1
-        },
-        {
-            "ball": {
-                "ptr_wrapper": {
-                    "valid": 1,
-                    "data": {
-                        "ball_type": "Masterball",
-                        "ball_modifier": 10
-                    }
-                }
-            },
-            "count": 1
-        }
-    ],
-    "achievements": [
-        {
-            "title": "THE BEGINNING",
-            "desc": "start your pokemon journey"
-        }
-    ],
-    "showcase": {
-        "ptr_wrapper": {
-            "valid": 0
-        }
-    },
-    "balls_thrown": 0,
-    "xp": 0,
-    "level": 0
+        "balls_thrown": 0,
+        "xp": 0,
+        "level": 0
+    }
 }

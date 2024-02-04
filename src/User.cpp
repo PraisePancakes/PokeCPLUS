@@ -109,7 +109,7 @@ void User::push_to_ball_inventory(Ball *new_ball)
 {
     BallItem new_item;
     new_item.ball = std::make_unique<Ball>(*new_ball);
-    new_item.count = 1;
+    new_item.count = 10;
 
     m_ball_inventory.push_back(std::move(new_item));
 };

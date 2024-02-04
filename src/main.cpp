@@ -12,8 +12,6 @@
 int main(int argc, char *argv[])
 {
     HANDLE hc = GetStdHandle(STD_OUTPUT_HANDLE);
-    const std::string save_path = "save/user_data.json";
-    std::ifstream file(save_path.c_str());
 
     ENVIRONMENT::play_music(); // future addition
     system("cls");
@@ -21,17 +19,13 @@ int main(int argc, char *argv[])
     ANY_KEY();
 
     // first save only
-
+    const std::string save_path = "save/user_data.json";
+    std::ifstream file(save_path.c_str());
     User user(0, 0, 0); // first save only
 
     if (file.is_open())
     {
-        std::cout << "File exists and can be opened.\n";
-        // {
-        //     cereal::JSONInputArchive archive(file);
-        //     archive(user);
-        // }
-        // fix deserializing this data, finish serializing the other members of the user class such as the ball inventory and achievements
+        user.loadFromFile(save_path);
         file.close();
     }
     else
@@ -49,46 +43,47 @@ int main(int argc, char *argv[])
         }
 
         user.set_username(username);
-        std::cout << "File does not exist or cannot be opened.\n";
+
+        unsigned short int starter_option = 0; // @SPAGHETTI clean this mess up, maybe abstract the entire process into the get_starter_pokemon method? who knows its just ugly
+        do
+        {
+            GUI::style_cout(GUI::YELLOW, std::cout, "-=-=- Select your starting pokemon -=-=-\n");
+            GUI::style_cout(GUI::YELLOW, std::cout, "1 : Pikachu\n");
+            GUI::style_cout(GUI::LIGHTBLUE, std::cout, "2 : Squirtle\n");
+            GUI::style_cout(GUI::RED, std::cout, "3 : Charmander\n");
+            GUI::style_cout(GUI::GREEN, std::cout, "4 : Bulbasaur\n");
+
+            std::cin >> starter_option;
+
+            if (starter_option < 1 || starter_option > 4)
+            {
+                GUI::style_cout(GUI::RED, std::cout, "[ERROR] Invalid selection. Please choose a number between 1 and 4.\n");
+            }
+            else
+            {
+                Pokemon *starter_pokemon = user.get_starter_pokemon(starter_option);
+
+                if (starter_pokemon)
+                {
+                    starter_pokemon->set_shiny();
+                    std::cout << ":: YOU CHOSE " << starter_pokemon->get_name() << " ::\n";
+                    user.push_to_pokedex(starter_pokemon);
+                    delete starter_pokemon;
+                }
+                else
+                {
+                    GUI::style_cout(GUI::RED, std::cout, "[ERROR] Invalid selection. Please choose a number between 1 and 4.\n");
+                }
+            }
+        } while (starter_option < 1 || starter_option > 4);
+
+        ANY_KEY();
     }
 
     system("cls");
     GUI::welcome_user(user.get_username()); // first || > saves
-
-    unsigned short int starter_option = 0; // @SPAGHETTI clean this mess up, maybe abstract the entire process into the get_starter_pokemon method? who knows its just ugly
-    do
-    {
-        GUI::style_cout(GUI::YELLOW, std::cout, "-=-=- Select your starting pokemon -=-=-\n");
-        GUI::style_cout(GUI::YELLOW, std::cout, "1 : Pikachu\n");
-        GUI::style_cout(GUI::LIGHTBLUE, std::cout, "2 : Squirtle\n");
-        GUI::style_cout(GUI::RED, std::cout, "3 : Charmander\n");
-        GUI::style_cout(GUI::GREEN, std::cout, "4 : Bulbasaur\n");
-
-        std::cin >> starter_option;
-
-        if (starter_option < 1 || starter_option > 4)
-        {
-            GUI::style_cout(GUI::RED, std::cout, "[ERROR] Invalid selection. Please choose a number between 1 and 4.\n");
-        }
-        else
-        {
-            Pokemon *starter_pokemon = user.get_starter_pokemon(starter_option);
-
-            if (starter_pokemon)
-            {
-                starter_pokemon->set_shiny();
-                std::cout << ":: YOU CHOSE " << starter_pokemon->get_name() << " ::\n";
-                user.push_to_pokedex(starter_pokemon);
-                delete starter_pokemon;
-            }
-            else
-            {
-                GUI::style_cout(GUI::RED, std::cout, "[ERROR] Invalid selection. Please choose a number between 1 and 4.\n");
-            }
-        }
-    } while (starter_option < 1 || starter_option > 4);
-
     ANY_KEY();
+
     system("cls");
     GUI::style_cout(GUI::CYAN, std::cout, ":: HERE ARE YOUR STARTING BALLS ::\n");
     user.display_ball_inventory();
@@ -220,11 +215,7 @@ int main(int argc, char *argv[])
             break;
         case GUI::MENU_EXIT:
             GUI::style_cout(GUI::RED, std::cout, "PROCESS TERMINATED\n");
-            {
-                std::ofstream os("save/user_data.json");
-                cereal::JSONOutputArchive archive(os);
-                user.serialize(archive);
-            }
+            user.saveToFile(save_path);
             break;
         default:
             GUI::style_cout(GUI::RED, std::cout, "[ERROR] INVALID MENU OPTION\n");

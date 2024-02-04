@@ -10,6 +10,7 @@
 #include <optional>
 #include <cereal/archives/json.hpp>
 #include <cereal/types/vector.hpp>
+#include <fstream>
 
 typedef struct BallItem
 {
@@ -71,6 +72,29 @@ public:
            cereal::make_nvp("xp", m_xp),
            cereal::make_nvp("level", m_level));
     };
+
+    void saveToFile(const std::string &filename) const
+    {
+        std::ofstream file(filename);
+        cereal::JSONOutputArchive archive(file);
+        archive(*this);
+    }
+
+    void loadFromFile(const std::string &filename)
+    {
+        std::ifstream file(filename);
+        if (file.is_open())
+        {
+            cereal::JSONInputArchive archive(file);
+            archive(*this);
+            file.close();
+        }
+        else
+        {
+            // Handle file opening error
+            std::cerr << "Error opening file: " << filename << std::endl;
+        }
+    }
     bool throw_ball(const Ball *ball, Pokemon *pokemon);
     void push_to_pokedex(Pokemon *new_pokemon);
     void push_to_ball_inventory(Ball *new_ball);
