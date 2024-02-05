@@ -49,6 +49,7 @@ private:
     unsigned long int m_balls_thrown;
     unsigned long int m_xp;     // 100 xp for level 1, 200 xp for level 2 -> double each time
     unsigned short int m_level; // max level 50
+    long long int m_steps;
 
 private:
     void m_init_ball_inventory();
@@ -70,7 +71,8 @@ public:
            cereal::make_nvp("showcase", m_showcase),
            cereal::make_nvp("balls_thrown", m_balls_thrown),
            cereal::make_nvp("xp", m_xp),
-           cereal::make_nvp("level", m_level));
+           cereal::make_nvp("level", m_level),
+           cereal::make_nvp("steps", m_steps));
     };
 
     void saveToFile(const std::string &filename) const
@@ -108,7 +110,7 @@ public:
     void display_user_stats() const;
     unsigned long int get_balls_thrown() const;
     int get_ball_inventory_size() const;
-    void walk() const;
+    void walk();
     std::optional<Ball> choose_ball();
     std::string get_username() const;
     // ~User(); future deconstructor

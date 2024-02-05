@@ -11,6 +11,7 @@ User::User(unsigned long int balls_thrown, unsigned long int xp, unsigned long i
     Achievement *new_achievement = m_create_achievement("THE BEGINNING", "start your pokemon journey");
     m_push_achievement(new_achievement);
     m_showcase = nullptr;
+    m_steps = 0;
 };
 
 std::string User::get_username() const
@@ -180,7 +181,7 @@ void User::display_ball_inventory()
     }
 }
 
-void User::walk() const
+void User::walk()
 {
     const unsigned short int MAX_WALK = 3;
     unsigned short int curr_walk = 0;
@@ -192,6 +193,8 @@ void User::walk() const
         sleep(WALK_DURATION);
         curr_walk++;
     }
+
+    m_steps += curr_walk;
 }
 
 Pokemon *User::get_starter_pokemon(unsigned short int selection_choice) const
@@ -255,6 +258,7 @@ void User::display_user_stats() const
     std::string username = get_username();
     unsigned long int balls_thrown = get_balls_thrown();
     std::string string_balls_thrown = std::to_string(balls_thrown);
+    std::string steps = std::to_string(m_steps);
 
     GUI::style_cout(GUI::CYAN, std::cout, "YOUR STATS { \n");
     GUI::style_cout(GUI::GREEN, std::cout, "\tUsername : ");
@@ -267,6 +271,8 @@ void User::display_user_stats() const
     GUI::style_cout(GUI::MAGENTA, std::cout, string_balls_thrown);
     GUI::style_cout(GUI::GREEN, std::cout, "\n\tShowcase :: ");
     display_showcase_pokemon();
+    GUI::style_cout(GUI::GREEN, std::cout, "\n\tSteps :: ");
+    GUI::style_cout(GUI::MAGENTA, std::cout, steps);
     GUI::style_cout(GUI::CYAN, std::cout, "} \n");
 }
 void User::m_remove_ball(const Ball *ball)

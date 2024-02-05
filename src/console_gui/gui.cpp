@@ -6,7 +6,7 @@ namespace GUI
 
     void display_tutorial() // update in the future
     {
-        style_cout(LIGHTBLUE, std::cout, "::\tWELCOME TO POKEMON CPLUS::\n\n|\tCATCH POKEMON\t\t |\n|\tVIEW POKDEX\t\t |\n|\tSHOWCASE POKEMON\t |\n|\tIMPROVE YOUR STATS\t |\n");
+        style_cout(LIGHTBLUE, std::cout, "::\tWELCOME TO POKEMON CPLUS v0.0.1-alpha\t::\n\n|\tCATCH POKEMON\t\t |\n|\tVIEW POKDEX\t\t |\n|\tSHOWCASE POKEMON\t |\n|\tIMPROVE YOUR STATS\t |\n");
         style_cout(LIGHTBLUE, std::cout, "------------------------------\n");
     }
 
