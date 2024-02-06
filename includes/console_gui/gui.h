@@ -3,7 +3,7 @@
 #include <iostream>
 #include <windows.h>
 #include <conio.h>
-#define ANY_KEY() (GUI::style_cout(GUI::LIGHTMAGENTA, std::cout, "press any key to continue...\n"), getch())
+#define ANY_KEY() (GUI::style_cout(GUI::LIGHTMAGENTA, std::cout, "\npress any key to continue...\n"), getch())
 namespace GUI
 {
 

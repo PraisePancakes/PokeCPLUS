@@ -214,7 +214,7 @@ void User::m_filter_level()
 
     if (new_level > level)
     {
-        GUI::style_cout(GUI::GREEN, std::cout, ":: YOU LEVELED UP! == LEVEL " + std::to_string(new_level) + " ::\n");
+        GUI::style_cout(GUI::GREEN, std::cout, "\n :: YOU LEVELED UP! == LEVEL " + std::to_string(new_level) + " ::\n");
     }
 }
 

@@ -6,8 +6,8 @@ namespace GUI
 
     void display_tutorial() // update in the future
     {
-        style_cout(LIGHTBLUE, std::cout, "::\tWELCOME TO POKEMON CPLUS v0.0.1-alpha\t::\n\n|\tCATCH POKEMON\t\t |\n|\tVIEW POKDEX\t\t |\n|\tSHOWCASE POKEMON\t |\n|\tIMPROVE YOUR STATS\t |\n");
-        style_cout(LIGHTBLUE, std::cout, "------------------------------\n");
+        style_cout(LIGHTBLUE, std::cout, "::\tWELCOME TO POKEMON CPLUS v0.0.1-alpha\t::\n\n|\t\tCATCH POKEMON\t\t\t |\n|\t\tVIEW POKDEX\t\t\t |\n|\t\tSHOWCASE POKEMON\t\t |\n|\t\tIMPROVE YOUR STATS\t\t |\n");
+        style_cout(LIGHTBLUE, std::cout, "--------------------------------------------------\n");
     }
 
     unsigned short int get_menu()
