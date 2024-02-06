@@ -8,7 +8,7 @@
 #include <fstream>
 #include <cereal/archives/json.hpp>
 
-// what to do today? serialize user obj
+// what to do today? rework achievements into an array of achievement objects where each object has the property .has_completed, if false achievment will show up as '???' else it will display
 int main(int argc, char *argv[])
 {
     HANDLE hc = GetStdHandle(STD_OUTPUT_HANDLE);

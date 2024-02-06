@@ -15,25 +15,48 @@
 typedef struct BallItem
 {
     std::unique_ptr<Ball> ball;
+
     int count;
     template <class Archive>
     void serialize(Archive &ar)
     {
+
         ar(cereal::make_nvp("ball", ball));
         ar(cereal::make_nvp("count", count));
     }
 
 } BallItem;
 
+enum ACHIEVEMENT_ID
+{
+    THE_BEGINNING = 0,
+    LEVELED_UP,
+    LEGEND,
+    SHINY_SHOES,
+    POKEDEX_BEGINNER,
+    POKEDEX_INTERMEDIATE,
+    POKEDEX_MASTER,
+    POKEDEX_GRANDMASTER,
+    BABY_STEPS,
+    ROAD_RUNNER,
+    IRON_MAN,
+    THE_END,
+    ERROR_MATCH = 404
+};
+// create an intialized array of achievements with all their properties
 typedef struct Achievement
 {
     std::string title;
     std::string desc;
+    ACHIEVEMENT_ID id;
+    bool has_completed = false;
     template <class Archive>
     void serialize(Archive &ar)
     {
         ar(cereal::make_nvp("title", title));
+        ar(cereal::make_nvp("id", id));
         ar(cereal::make_nvp("desc", desc));
+        ar(cereal::make_nvp("completed", has_completed));
     }
 
 } Achievement;
@@ -50,6 +73,8 @@ private:
     unsigned long int m_xp;     // 100 xp for level 1, 200 xp for level 2 -> double each time
     unsigned short int m_level; // max level 50
     long long int m_steps;
+    void filter_achievements();
+    bool m_has_legendary_pokemon;
 
 private:
     void m_init_ball_inventory();
@@ -58,9 +83,10 @@ private:
     void m_filter_level();
     Achievement *m_create_achievement(std::string title, std::string desc);
     void m_push_achievement(Achievement *achievement);
+    void init_achievements();
 
 public:
-    User(unsigned long int balls_thrown, unsigned long int xp, unsigned long int level); // arg list : username, pokedex, pokeballs
+    User(unsigned long int balls_thrown, unsigned long int xp, unsigned long int level); // init_achievements();
     template <class Archive>
     void serialize(Archive &ar)
     {
@@ -72,7 +98,8 @@ public:
            cereal::make_nvp("balls_thrown", m_balls_thrown),
            cereal::make_nvp("xp", m_xp),
            cereal::make_nvp("level", m_level),
-           cereal::make_nvp("steps", m_steps));
+           cereal::make_nvp("steps", m_steps),
+           cereal::make_nvp("has_legendary_pokemon", m_has_legendary_pokemon));
     };
 
     void saveToFile(const std::string &filename) const
@@ -100,7 +127,7 @@ public:
     bool throw_ball(const Ball *ball, Pokemon *pokemon);
     void push_to_pokedex(Pokemon *new_pokemon);
     void push_to_ball_inventory(Ball *new_ball);
-    void display_achievements() const;
+    void display_achievements();
     void display_pokedex() const;
     void set_username(std::string username);
     void display_ball_inventory();
