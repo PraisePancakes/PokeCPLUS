@@ -73,14 +73,15 @@ private:
     unsigned long int m_xp;     // 100 xp for level 1, 200 xp for level 2 -> double each time
     unsigned short int m_level; // max level 50
     long long int m_steps;
-    void filter_achievements();
     bool m_has_legendary_pokemon;
+    long long int m_coins;
 
 private:
     void m_init_ball_inventory();
     void m_remove_ball(const Ball *ball);
     void m_filter_pokeballs();
     void m_filter_level();
+    void filter_achievements();
     Achievement *m_create_achievement(std::string title, std::string desc);
     void m_push_achievement(Achievement *achievement);
     void init_achievements();
@@ -99,7 +100,8 @@ public:
            cereal::make_nvp("xp", m_xp),
            cereal::make_nvp("level", m_level),
            cereal::make_nvp("steps", m_steps),
-           cereal::make_nvp("has_legendary_pokemon", m_has_legendary_pokemon));
+           cereal::make_nvp("has_legendary_pokemon", m_has_legendary_pokemon),
+           cereal::make_nvp("coins", m_coins));
     };
 
     void saveToFile(const std::string &filename) const
@@ -124,6 +126,8 @@ public:
             std::cerr << "Error opening file: " << filename << std::endl;
         }
     }
+
+    void subtract_coins(int amount);
     bool throw_ball(const Ball *ball, Pokemon *pokemon);
     void push_to_pokedex(Pokemon *new_pokemon);
     void push_to_ball_inventory(Ball *new_ball);
@@ -131,12 +135,14 @@ public:
     void display_pokedex() const;
     void set_username(std::string username);
     void display_ball_inventory();
+    void buy_ball(std::string type, int amount);
     Pokemon *get_starter_pokemon(unsigned short int selection_choice) const;
     void set_showcase_pokemon();
     void display_showcase_pokemon() const;
     void display_user_stats() const;
     unsigned long int get_balls_thrown() const;
     int get_ball_inventory_size() const;
+    int get_coins() const;
     void walk();
     std::optional<Ball> choose_ball();
     std::string get_username() const;

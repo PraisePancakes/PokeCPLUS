@@ -10,12 +10,34 @@ namespace GUI
         style_cout(LIGHTBLUE, std::cout, "--------------------------------------------------\n");
     }
 
+    unsigned short int get_shop_menu()
+    {
+        unsigned short int option = 0;
+        style_cout(LIGHTBLUE, std::cout, "1 : Buy more pokeballs\n2 : Quit\n");
+        std::cin >> option;
+
+        return option;
+    }
+
+    unsigned short int get_ball_menu()
+    {
+        unsigned short int option = 0;
+        style_cout(LIGHTRED, std::cout, "(1) 5 x Pokeballs | 500 coins\n");
+        style_cout(BLUE, std::cout, "(2) 5 x Greatballs | 1,000 coins\n");
+        style_cout(YELLOW, std::cout, "(3) 5 x Ultraballs | 10,000 coins\n");
+        style_cout(LIGHTMAGENTA, std::cout, "(4) 1 x Masterball | 100,000 coins\n");
+        style_cout(GREEN, std::cout, "(5) Go Back\n");
+        std::cin >> option;
+
+        return option;
+    }
+
     unsigned short int get_menu()
     {
         unsigned short int option = 0;
 
         style_cout(YELLOW, std::cout, "=-=-= POKEMON CPLUS =-=-=\n");
-        style_cout(WHITE, std::cout, "1 : Catch\n2 : Pokedex\n3 : Showcase Pokemon\n4 : View Pokeballs\n5 : View Achievements\n6 : Quit\n");
+        style_cout(WHITE, std::cout, "1 : Catch\n2 : Pokedex\n3 : Showcase Pokemon\n4 : View Pokeballs\n5 : View Achievements\n6 : Shop\n7 : Quit\n");
         std::cin >> option;
 
         return option;

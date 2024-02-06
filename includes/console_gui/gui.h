@@ -35,7 +35,8 @@ namespace GUI
         MENU_SHOWCASE_POKEMON = 3,
         MENU_VIEW_POKEBALLS = 4,
         MENU_VIEW_ACHIEVEMENTS = 5,
-        MENU_EXIT = 6,
+        MENU_SHOP = 6,
+        MENU_EXIT = 7,
     };
 
     enum CatchOptions
@@ -49,7 +50,8 @@ namespace GUI
     void display_tutorial();
     void welcome_user(std::string username);
     void style_cout(Colors color, std::ostream &text_stream, const std::string &text);
-
+    unsigned short int get_shop_menu();
+    unsigned short int get_ball_menu();
     Colors intToColor(int colorCode);
     unsigned short int get_catch_option();
 

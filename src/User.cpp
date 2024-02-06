@@ -12,7 +12,13 @@ User::User(unsigned long int balls_thrown, unsigned long int xp, unsigned long i
     m_showcase = nullptr;
     m_steps = 0;
     m_has_legendary_pokemon = false;
+    m_coins = 1000000;
 };
+
+int User::get_coins() const
+{
+    return m_coins;
+}
 
 void User::filter_achievements()
 {
@@ -180,33 +186,43 @@ void User::m_filter_level()
     {
     case 1 ... 1000:
         m_level = 1;
+        m_coins += 50;
         break;
     case 1001 ... 2000:
         m_level = 2;
+        m_coins += 100;
         break;
     case 2001 ... 4000:
         m_level = 3;
+        m_coins += 200;
         break;
     case 4001 ... 8000:
         m_level = 4;
+        m_coins += 400;
         break;
     case 8001 ... 16000:
         m_level = 5;
+        m_coins += 800;
         break;
     case 16001 ... 32000:
         m_level = 6;
+        m_coins += 1600;
         break;
     case 32001 ... 64000:
         m_level = 7;
+        m_coins += 3200;
         break;
     case 64001 ... 128000:
         m_level = 8;
+        m_coins += 6400;
         break;
     case 128001 ... 256000:
         m_level = 9;
+        m_coins += 12800;
         break;
     case 256001 ... 512000:
         m_level = 10;
+        m_coins += 25600;
         break;
     }
 
@@ -249,11 +265,42 @@ void User::push_to_pokedex(Pokemon *new_pokemon)
     m_pokedex.push_back(*new_pokemon);
 };
 
+void User::subtract_coins(int amount)
+{
+    m_coins = m_coins - amount;
+}
+
+void User::buy_ball(std::string type, int amount)
+{
+    for (size_t i = 0; i < m_ball_inventory.size(); i++)
+    {
+        if (m_ball_inventory[i].ball->get_ball_type().compare(type) == 0) // if ball is found
+        {
+            m_ball_inventory[i].count += amount;
+            return;
+        }
+    }
+    // if ball is not found?
+    Ball *new_ball = new Ball(type);
+    BallItem new_item;
+    new_item.ball = std::make_unique<Ball>(*new_ball);
+    new_item.count = amount;
+    m_ball_inventory.push_back(std::move(new_item));
+    delete new_ball;
+};
+
 void User::push_to_ball_inventory(Ball *new_ball)
 {
     BallItem new_item;
     new_item.ball = std::make_unique<Ball>(*new_ball);
-    new_item.count = 10;
+    if (new_ball->get_ball_type().compare("Masterball") == 0)
+    {
+        new_item.count = 1;
+    }
+    else
+    {
+        new_item.count = 10;
+    }
 
     m_ball_inventory.push_back(std::move(new_item));
 };
@@ -409,22 +456,27 @@ void User::display_user_stats() const
 {
     std::string username = get_username();
     unsigned long int balls_thrown = get_balls_thrown();
+    std::string xp = std::to_string(m_xp);
+    std::string level = std::to_string(m_level);
     std::string string_balls_thrown = std::to_string(balls_thrown);
     std::string steps = std::to_string(m_steps);
+    std::string coins = std::to_string(m_coins);
 
     GUI::style_cout(GUI::CYAN, std::cout, "YOUR STATS { \n");
     GUI::style_cout(GUI::GREEN, std::cout, "\tUsername : ");
     GUI::style_cout(GUI::MAGENTA, std::cout, username);
     GUI::style_cout(GUI::GREEN, std::cout, "\tXp : ");
-    GUI::style_cout(GUI::MAGENTA, std::cout, std::to_string(m_xp));
+    GUI::style_cout(GUI::MAGENTA, std::cout, xp);
     GUI::style_cout(GUI::GREEN, std::cout, "\tLevel : ");
-    GUI::style_cout(GUI::MAGENTA, std::cout, std::to_string(m_level));
+    GUI::style_cout(GUI::MAGENTA, std::cout, level);
     GUI::style_cout(GUI::GREEN, std::cout, "\n\tTotal pokeball throws : ");
     GUI::style_cout(GUI::MAGENTA, std::cout, string_balls_thrown);
     GUI::style_cout(GUI::GREEN, std::cout, "\n\tShowcase :: ");
     display_showcase_pokemon();
     GUI::style_cout(GUI::GREEN, std::cout, "\tSteps :: ");
     GUI::style_cout(GUI::MAGENTA, std::cout, steps);
+    GUI::style_cout(GUI::GREEN, std::cout, "\tCoins :: ");
+    GUI::style_cout(GUI::MAGENTA, std::cout, coins);
     GUI::style_cout(GUI::CYAN, std::cout, "\n} \n");
 }
 void User::m_remove_ball(const Ball *ball)
@@ -468,6 +520,7 @@ bool User::throw_ball(const Ball *ball, Pokemon *pokemon)
         if (success == 69)
         {
             m_xp += 1000;
+            m_coins += 500;
             m_filter_level();
             m_has_legendary_pokemon = true;
             return true;
@@ -481,6 +534,7 @@ bool User::throw_ball(const Ball *ball, Pokemon *pokemon)
         if (success >= 2)
         {
             m_xp += 500;
+            m_coins += 200;
             m_filter_level();
             return true;
         }

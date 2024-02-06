@@ -8,7 +8,7 @@
 #include <fstream>
 #include <cereal/archives/json.hpp>
 
-// what to do today? rework achievements into an array of achievement objects where each object has the property .has_completed, if false achievment will show up as '???' else it will display
+// what to do today? work on shop system ? buy pokeballs?
 int main(int argc, char *argv[])
 {
     HANDLE hc = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -213,6 +213,63 @@ int main(int argc, char *argv[])
             user.display_achievements();
             ANY_KEY();
             break;
+        case GUI::MENU_SHOP:
+            GUI::style_cout(GUI::YELLOW, std::cout, "=-=-= SHOP =-=-=\n");
+            if (user.get_coins() < 500)
+            {
+                GUI::style_cout(GUI::RED, std::cout, ":: NOT ENOUGH COINS, COME BACK WHEN YOU HAVE MORE COINS ::\n");
+            }
+            else
+            {
+                unsigned short int shop_option = 0;
+                const unsigned short int SHOP_EXIT = 2;
+                while (shop_option != SHOP_EXIT)
+                {
+                    shop_option = GUI::get_shop_menu();
+                    switch (shop_option)
+                    {
+                    case 1:
+                        // display pokeball shop
+                        {
+                            unsigned short int pokeball_option = 0;
+                            const unsigned short int BALL_MENU_EXIT = 5;
+                            while (pokeball_option != BALL_MENU_EXIT)
+                            {
+                                pokeball_option = GUI::get_ball_menu();
+                                switch (pokeball_option)
+                                {
+                                case 1:
+                                    user.buy_ball("Pokeball", 5);
+                                    user.subtract_coins(500);
+                                    break;
+                                case 2:
+                                    user.buy_ball("Greatball", 5);
+                                    user.subtract_coins(1000);
+                                    break;
+                                case 3:
+                                    user.buy_ball("Ultraball", 5);
+                                    user.subtract_coins(10000);
+                                    break;
+                                case 4:
+                                    user.buy_ball("Masterball", 1);
+                                    user.subtract_coins(100000);
+                                    break;
+                                case BALL_MENU_EXIT:
+                                    break;
+                                default:
+                                    GUI::style_cout(GUI::RED, std::cout, ":: INVALID SELECTION TRY AGAIN ::\n");
+                                }
+                            }
+                        }
+                        break;
+                    case SHOP_EXIT:
+                        break;
+                    default:
+                        GUI::style_cout(GUI::RED, std::cout, ":: INVALID SHOP SELECTION TRY AGAIN ::");
+                    }
+                }
+            }
+            ANY_KEY();
         case GUI::MENU_EXIT:
             GUI::style_cout(GUI::RED, std::cout, "PROCESS TERMINATED\n");
             user.saveToFile(save_path);
