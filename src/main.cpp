@@ -8,7 +8,15 @@
 #include <fstream>
 #include <cereal/archives/json.hpp>
 
-// what to do today? work on shop system ? buy pokeballs?
+/*
+   __TO DO__
+    what to do today?
+    refactor user class header, 
+    refactor src/main, 
+    remove executable from VCS, users will have to build and run the project themselves
+    (BONUS POINTS find out how to make a release executable so that users dont have to build themselves)
+*/
+
 int main(int argc, char *argv[])
 {
     HANDLE hc = GetStdHandle(STD_OUTPUT_HANDLE);
