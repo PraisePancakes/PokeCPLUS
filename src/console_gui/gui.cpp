@@ -10,6 +10,15 @@ namespace GUI
         style_cout(LIGHTBLUE, std::cout, "--------------------------------------------------\n");
     }
 
+    void display_starters()
+    {
+        style_cout(YELLOW, std::cout, "-=-=- Select your starting pokemon -=-=-\n");
+        style_cout(YELLOW, std::cout, "1 : Pikachu\n");
+        style_cout(LIGHTBLUE, std::cout, "2 : Squirtle\n");
+        style_cout(RED, std::cout, "3 : Charmander\n");
+        style_cout(GREEN, std::cout, "4 : Bulbasaur\n");
+    }
+
     unsigned short int get_shop_menu()
     {
         unsigned short int option = 0;

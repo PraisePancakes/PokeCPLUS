@@ -11,8 +11,7 @@
 /*
    __TO DO__
     what to do today?
-    refactor user class header, 
-    refactor src/main, 
+    refactor src/main,
     remove executable from VCS, users will have to build and run the project themselves
     (BONUS POINTS find out how to make a release executable so that users dont have to build themselves)
 */
@@ -52,15 +51,11 @@ int main(int argc, char *argv[])
 
         user.set_username(username);
 
-        unsigned short int starter_option = 0; // @SPAGHETTI clean this mess up, maybe abstract the entire process into the get_starter_pokemon method? who knows its just ugly
+        unsigned short int starter_option = 0;
         do
         {
-            GUI::style_cout(GUI::YELLOW, std::cout, "-=-=- Select your starting pokemon -=-=-\n");
-            GUI::style_cout(GUI::YELLOW, std::cout, "1 : Pikachu\n");
-            GUI::style_cout(GUI::LIGHTBLUE, std::cout, "2 : Squirtle\n");
-            GUI::style_cout(GUI::RED, std::cout, "3 : Charmander\n");
-            GUI::style_cout(GUI::GREEN, std::cout, "4 : Bulbasaur\n");
 
+            GUI::display_starters();
             std::cin >> starter_option;
 
             if (starter_option < 1 || starter_option > 4)
@@ -77,10 +72,6 @@ int main(int argc, char *argv[])
                     std::cout << ":: YOU CHOSE " << starter_pokemon->get_name() << " ::\n";
                     user.push_to_pokedex(starter_pokemon);
                     delete starter_pokemon;
-                }
-                else
-                {
-                    GUI::style_cout(GUI::RED, std::cout, "[ERROR] Invalid selection. Please choose a number between 1 and 4.\n");
                 }
             }
         } while (starter_option < 1 || starter_option > 4);

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../../includes/console_gui/Gui.h"
+#include <cctype>
 
 bool validate_username(std::string username)
 {
@@ -10,7 +11,7 @@ bool validate_username(std::string username)
     }
     for (int i = 0; i < username.length(); i++)
     {
-        if (isspace(username[i]))
+        if (std::isspace((unsigned char)username[i]))
         {
             GUI::style_cout(GUI::RED, std::cout, "[ERROR] USERNAME CANNOT CONTAIN ANY SPACES\n");
             return false;
