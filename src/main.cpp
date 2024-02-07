@@ -12,6 +12,7 @@
    __TO DO__
     what to do today?
     refactor src/main,
+    convert dumb pointers to smart pointers
     remove executable from VCS, users will have to build and run the project themselves
     (BONUS POINTS find out how to make a release executable so that users dont have to build themselves)
 */

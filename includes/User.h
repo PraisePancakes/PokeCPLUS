@@ -34,7 +34,7 @@ private:
     std::string m_username;
     std::vector<Pokemon> m_pokedex;
     std::vector<BallItem> m_ball_inventory;
-    std::vector<Achievement> m_achievements;
+    std::vector<std::unique_ptr<Achievement>> m_achievements;
     std::unique_ptr<Pokemon> m_showcase;
     unsigned long int m_balls_thrown;
     unsigned long int m_xp;     // 100 xp for level 1, 200 xp for level 2 -> double each time
@@ -49,8 +49,9 @@ private:
     void m_filter_pokeballs();
     void m_filter_level();
     void filter_achievements();
-    Achievement *m_create_achievement(std::string title, std::string desc);
-    void m_push_achievement(Achievement *achievement);
+    std::unique_ptr<Achievement>
+    m_create_achievement(std::string title, std::string desc, ACHIEVEMENT_ID id);
+    void m_push_achievement(std::unique_ptr<Achievement> achievement);
     void init_achievements();
 
 public:

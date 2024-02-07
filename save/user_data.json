@@ -1,0 +1,230 @@
+{
+    "value0": {
+        "username": "Ary",
+        "pokedex": [
+            {
+                "pokemon_name": "Pikachu",
+                "is_shiny": false,
+                "is_legendary": false,
+                "type": {
+                    "ptr_wrapper": {
+                        "valid": 1,
+                        "data": {
+                            "pokemon_primary_type_name": "Electric",
+                            "primary_type_color": 14
+                        }
+                    }
+                }
+            },
+            {
+                "pokemon_name": "Pikachu",
+                "is_shiny": false,
+                "is_legendary": false,
+                "type": {
+                    "ptr_wrapper": {
+                        "valid": 1,
+                        "data": {
+                            "pokemon_primary_type_name": "Electric",
+                            "primary_type_color": 14
+                        }
+                    }
+                }
+            }
+        ],
+        "ball_inventory": [
+            {
+                "ball": {
+                    "ptr_wrapper": {
+                        "valid": 1,
+                        "data": {
+                            "ball_type": "Pokeball",
+                            "ball_modifier": 1
+                        }
+                    }
+                },
+                "count": 10
+            },
+            {
+                "ball": {
+                    "ptr_wrapper": {
+                        "valid": 1,
+                        "data": {
+                            "ball_type": "Greatball",
+                            "ball_modifier": 5
+                        }
+                    }
+                },
+                "count": 10
+            },
+            {
+                "ball": {
+                    "ptr_wrapper": {
+                        "valid": 1,
+                        "data": {
+                            "ball_type": "Ultraball",
+                            "ball_modifier": 7
+                        }
+                    }
+                },
+                "count": 8
+            },
+            {
+                "ball": {
+                    "ptr_wrapper": {
+                        "valid": 1,
+                        "data": {
+                            "ball_type": "Masterball",
+                            "ball_modifier": 10
+                        }
+                    }
+                },
+                "count": 1
+            }
+        ],
+        "achievements": [
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "title": "THE BEGINNING",
+                        "id": 0,
+                        "desc": "start your pokemon journey",
+                        "completed": true
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "title": "LEVELED UP",
+                        "id": 1,
+                        "desc": "reach a new level",
+                        "completed": true
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "title": "LEGEND",
+                        "id": 2,
+                        "desc": "register a legendary to your pokedex",
+                        "completed": false
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "title": "SHINY SHOES",
+                        "id": 3,
+                        "desc": "register a shiny to your pokedex",
+                        "completed": false
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "title": "POKEDEX BEGINNER",
+                        "id": 4,
+                        "desc": "register 10 pokemon to pokedex",
+                        "completed": false
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "title": "POKEDEX INTERMEDIATE",
+                        "id": 5,
+                        "desc": "register 20 pokemon to pokedex",
+                        "completed": false
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "title": "POKEDEX MASTER",
+                        "id": 6,
+                        "desc": "register 50 pokemon to pokedex",
+                        "completed": false
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "title": "POKEDEX GRANDMASTER",
+                        "id": 7,
+                        "desc": "register 100 pokemon to pokedex",
+                        "completed": false
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "title": "BABY STEPS",
+                        "id": 8,
+                        "desc": "reach 10 steps",
+                        "completed": false
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "title": "ROAD RUNNER",
+                        "id": 9,
+                        "desc": "reach 100 steps",
+                        "completed": false
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "title": "IRON MAN",
+                        "id": 10,
+                        "desc": "reach 1000 steps",
+                        "completed": false
+                    }
+                }
+            },
+            {
+                "ptr_wrapper": {
+                    "valid": 1,
+                    "data": {
+                        "title": "THE END",
+                        "id": 11,
+                        "desc": "reach level 10",
+                        "completed": false
+                    }
+                }
+            }
+        ],
+        "showcase": {
+            "ptr_wrapper": {
+                "valid": 0
+            }
+        },
+        "balls_thrown": 2,
+        "xp": 600,
+        "level": 1,
+        "steps": 3,
+        "has_legendary_pokemon": false,
+        "coins": 1000250
+    }
+}

@@ -21,12 +21,14 @@ enum ACHIEVEMENT_ID
     ERROR_MATCH = 404
 };
 // create an intialized array of achievements with all their properties
-typedef struct Achievement
+class Achievement
 {
-    std::string title;
-    std::string desc;
-    ACHIEVEMENT_ID id;
-    bool has_completed = false;
+public:
+    Achievement() = default;
+
+    Achievement(std::string t, std::string d, ACHIEVEMENT_ID i)
+        : title(t), desc(d), id(i), has_completed(false) {}
+
     template <class Archive>
     void serialize(Archive &ar)
     {
@@ -36,6 +38,10 @@ typedef struct Achievement
         ar(cereal::make_nvp("completed", has_completed));
     }
 
-} Achievement;
+    std::string title;
+    std::string desc;
+    ACHIEVEMENT_ID id;
+    bool has_completed = false;
+};
 
 #endif

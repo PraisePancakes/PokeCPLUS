@@ -26,146 +26,124 @@ void User::filter_achievements()
 
     if (m_level >= 1)
     {
-        m_achievements[LEVELED_UP].has_completed = true;
+        m_achievements[LEVELED_UP]->has_completed = true;
     }
     if (m_has_legendary_pokemon == true)
     {
-        m_achievements[LEGEND].has_completed = true;
+        m_achievements[LEGEND]->has_completed = true;
     }
 
     for (size_t i = 0; i < m_pokedex.size(); i++)
     {
         if (m_pokedex[i].get_is_shiny() == true)
         {
-            m_achievements[SHINY_SHOES].has_completed = true;
+            m_achievements[SHINY_SHOES]->has_completed = true;
             break;
         }
     };
 
     if (m_pokedex.size() >= 10)
     {
-        m_achievements[POKEDEX_BEGINNER].has_completed = true;
+        m_achievements[POKEDEX_BEGINNER]->has_completed = true;
     }
 
     if (m_pokedex.size() >= 20)
     {
-        m_achievements[POKEDEX_INTERMEDIATE].has_completed = true;
+        m_achievements[POKEDEX_INTERMEDIATE]->has_completed = true;
     }
 
     if (m_pokedex.size() >= 50)
     {
-        m_achievements[POKEDEX_MASTER].has_completed = true;
+        m_achievements[POKEDEX_MASTER]->has_completed = true;
     }
 
     if (m_pokedex.size() >= 100)
     {
-        m_achievements[POKEDEX_GRANDMASTER].has_completed = true;
+        m_achievements[POKEDEX_GRANDMASTER]->has_completed = true;
     }
 
     if (m_steps >= 10)
     {
-        m_achievements[BABY_STEPS].has_completed = true;
+        m_achievements[BABY_STEPS]->has_completed = true;
     }
 
     if (m_steps >= 100)
     {
-        m_achievements[ROAD_RUNNER].has_completed = true;
+        m_achievements[ROAD_RUNNER]->has_completed = true;
     }
 
     if (m_steps >= 1000)
     {
-        m_achievements[IRON_MAN].has_completed = true;
+        m_achievements[IRON_MAN]->has_completed = true;
     }
 
     if (m_level >= 10)
     {
-        m_achievements[THE_END].has_completed = true;
+        m_achievements[THE_END]->has_completed = true;
     }
 }
 
 void User::init_achievements()
 {
-    Achievement *new_achievement = m_create_achievement("THE BEGINNING", "start your pokemon journey");
-    new_achievement->has_completed = true;
-    new_achievement->id = THE_BEGINNING;
-    m_push_achievement(new_achievement);
-    free(new_achievement);
+    std::unique_ptr<Achievement> achievement1 = m_create_achievement(
+        "THE BEGINNING", "start your pokemon journey", THE_BEGINNING);
+    achievement1->has_completed = true;
+    m_push_achievement(std::move(achievement1));
 
-    new_achievement = m_create_achievement("LEVELED UP", "reach level 1!");
-    new_achievement->has_completed = false;
-    new_achievement->id = LEVELED_UP;
+    std::unique_ptr<Achievement> achievement2 = m_create_achievement(
+        "LEVELED UP", "reach a new level", LEVELED_UP);
+    achievement2->has_completed = false;
+    m_push_achievement(std::move(achievement2));
 
-    m_push_achievement(new_achievement);
-    free(new_achievement);
+    std::unique_ptr<Achievement> achievement3 = m_create_achievement(
+        "LEGEND", "register a legendary to your pokedex", LEGEND);
+    achievement3->has_completed = false;
+    m_push_achievement(std::move(achievement3));
 
-    new_achievement = m_create_achievement("LEGEND", "catch a legendary pokemon!");
-    new_achievement->has_completed = false;
-    new_achievement->id = LEGEND;
+    std::unique_ptr<Achievement> achievement4 = m_create_achievement(
+        "SHINY SHOES", "register a shiny to your pokedex", SHINY_SHOES);
+    achievement4->has_completed = false;
+    m_push_achievement(std::move(achievement4));
 
-    m_push_achievement(new_achievement);
-    free(new_achievement);
+    std::unique_ptr<Achievement> achievement5 = m_create_achievement(
+        "POKEDEX BEGINNER", "register 10 pokemon to pokedex", POKEDEX_BEGINNER);
+    achievement5->has_completed = false;
+    m_push_achievement(std::move(achievement5));
 
-    new_achievement = m_create_achievement("SHINY SHOES", "catch a shiny pokemon!");
-    new_achievement->has_completed = false;
-    new_achievement->id = SHINY_SHOES;
+    std::unique_ptr<Achievement> achievement6 = m_create_achievement(
+        "POKEDEX INTERMEDIATE", "register 20 pokemon to pokedex", POKEDEX_INTERMEDIATE);
+    achievement6->has_completed = false;
+    m_push_achievement(std::move(achievement6));
 
-    m_push_achievement(new_achievement);
-    free(new_achievement);
+    std::unique_ptr<Achievement> achievement7 = m_create_achievement(
+        "POKEDEX MASTER", "register 50 pokemon to pokedex", POKEDEX_MASTER);
+    achievement7->has_completed = false;
+    m_push_achievement(std::move(achievement7));
 
-    new_achievement = m_create_achievement("POKEDEX BEGINNER", "register 10 pokemon to pokedex!");
-    new_achievement->has_completed = false;
-    new_achievement->id = POKEDEX_BEGINNER;
+    std::unique_ptr<Achievement> achievement8 = m_create_achievement(
+        "POKEDEX GRANDMASTER", "register 100 pokemon to pokedex", POKEDEX_GRANDMASTER);
+    achievement8->has_completed = false;
+    m_push_achievement(std::move(achievement8));
 
-    m_push_achievement(new_achievement);
-    free(new_achievement);
+    std::unique_ptr<Achievement> achievement9 = m_create_achievement(
+        "BABY STEPS", "reach 10 steps", BABY_STEPS);
+    achievement9->has_completed = false;
+    m_push_achievement(std::move(achievement9));
 
-    new_achievement = m_create_achievement("POKEDEX INTERMEDIATE", "register 20 pokemon to pokedex!");
-    new_achievement->has_completed = false;
-    new_achievement->id = POKEDEX_INTERMEDIATE;
+    std::unique_ptr<Achievement> achievement10 = m_create_achievement(
+        "ROAD RUNNER", "reach 100 steps", ROAD_RUNNER);
+    achievement10->has_completed = false;
+    m_push_achievement(std::move(achievement10));
 
-    m_push_achievement(new_achievement);
-    free(new_achievement);
+    std::unique_ptr<Achievement> achievement11 = m_create_achievement(
+        "IRON MAN", "reach 1000 steps", IRON_MAN);
+    achievement11->has_completed = false;
+    m_push_achievement(std::move(achievement11));
 
-    new_achievement = m_create_achievement("POKEDEX MASTER", "register 50 pokemon to pokedex!");
-    new_achievement->has_completed = false;
-    new_achievement->id = POKEDEX_MASTER;
-
-    m_push_achievement(new_achievement);
-    free(new_achievement);
-
-    new_achievement = m_create_achievement("POKEDEX GRANDMASTER", "register 100 pokemon to pokedex!");
-    new_achievement->has_completed = false;
-    new_achievement->id = POKEDEX_GRANDMASTER;
-
-    m_push_achievement(new_achievement);
-    free(new_achievement);
-
-    new_achievement = m_create_achievement("BABY STEPS", "reach 10 steps!");
-    new_achievement->has_completed = false;
-    new_achievement->id = BABY_STEPS;
-
-    m_push_achievement(new_achievement);
-    free(new_achievement);
-
-    new_achievement = m_create_achievement("ROAD RUNNER", "reach 100 steps!");
-    new_achievement->has_completed = false;
-    new_achievement->id = ROAD_RUNNER;
-
-    m_push_achievement(new_achievement);
-    free(new_achievement);
-
-    new_achievement = m_create_achievement("IRON MAN", "reach 1000 steps!");
-    new_achievement->has_completed = false;
-    new_achievement->id = IRON_MAN;
-
-    m_push_achievement(new_achievement);
-    free(new_achievement);
-
-    new_achievement = m_create_achievement("THE END", "reach level 10!");
-    new_achievement->has_completed = false;
-    new_achievement->id = THE_END;
-    m_push_achievement(new_achievement);
-    free(new_achievement);
+    std::unique_ptr<Achievement> achievement12 = m_create_achievement(
+        "THE END", "reach level 10", THE_END);
+    achievement12->has_completed = false;
+    m_push_achievement(std::move(achievement12));
 }
 
 std::string User::get_username() const
@@ -310,26 +288,26 @@ void User::display_achievements()
     filter_achievements();
     for (int i = 0; i < m_achievements.size(); i++)
     {
-        if (m_achievements[i].has_completed == true)
+        if (m_achievements[i]->has_completed == true)
         {
-            GUI::style_cout(GUI::BLUE, std::cout, std::to_string(m_achievements[i].id) + " " + m_achievements[i].title);
-            GUI::style_cout(GUI::GREEN, std::cout, " - " + m_achievements[i].desc + "\n");
+            GUI::style_cout(GUI::BLUE, std::cout, std::to_string(m_achievements[i]->id) + " " + m_achievements[i]->title);
+            GUI::style_cout(GUI::GREEN, std::cout, " - " + m_achievements[i]->desc + "\n");
         }
         else
         {
-            GUI::style_cout(GUI::LIGHTMAGENTA, std::cout, std::to_string(m_achievements[i].id) + " ???\n");
+            GUI::style_cout(GUI::LIGHTMAGENTA, std::cout, std::to_string(m_achievements[i]->id) + " ???\n");
         }
     }
 };
-Achievement *User::m_create_achievement(std::string title, std::string desc)
+
+std::unique_ptr<Achievement> User::m_create_achievement(std::string title, std::string desc, ACHIEVEMENT_ID id)
 {
-    Achievement *new_achievement = new Achievement{title, desc};
-    return new_achievement;
+    return std::make_unique<Achievement>(title, desc, id);
 }
 
-void User::m_push_achievement(Achievement *achievement)
+void User::m_push_achievement(std::unique_ptr<Achievement> achievement)
 {
-    m_achievements.push_back(*achievement);
+    m_achievements.push_back(std::move(achievement));
 }
 
 void User::m_init_ball_inventory()
